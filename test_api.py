@@ -1,0 +1,44 @@
+"""Test the SmartTyreAPI class."""
+import os
+
+from dotenv import load_dotenv
+
+from smarttyre_api import SmartTyreAPI
+
+load_dotenv()
+
+
+class TestAPI:
+    def setup_method(self):
+        self.api = SmartTyreAPI(
+            base_url="https://www.dajintruck.com",
+            client_id=os.getenv("CLIENT_ID"),
+            client_secret=os.getenv("CLIENT_SECRET"),
+            sign_key=os.getenv("SIGN_KEY"),
+        )
+
+    def test_get_access_token(self):
+        token = self.api.get_access_token()
+        assert token is not None
+        assert isinstance(token, str)
+        assert len(token) > 0
+
+    def test_get_vehicle_list(self):
+        vehicles = self.api.get_vehicle_list()
+        assert vehicles is not None
+        assert isinstance(vehicles, dict)
+        assert len(vehicles) > 0
+
+    def test_get_vehicle_info(self):
+        vehicle_id = 7543
+        vehicle_info = self.api.get_vehicle_info(vehicle_id)
+        assert vehicle_info is not None
+        assert isinstance(vehicle_info, dict)
+        assert vehicle_info.get("id") == vehicle_id
+
+    def test_get_tires_info_by_vehicle(self):
+        vehicle_id = 7543
+        tires_info = self.api.get_tires_info_by_vehicle(vehicle_id)
+        assert tires_info is not None
+        assert isinstance(tires_info, dict)
+        assert len(tires_info) > 0
