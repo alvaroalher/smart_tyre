@@ -115,68 +115,9 @@ class SmartTyreAPI:
 
         return response.get("accessToken") if response else None
 
-    def get_vehicle_list(self):
-        """
-        Obtains the list of vehicles from the Smart Tyre API.
+# Vehicle Management
 
-        Returns:
-            The list of vehicles if available or None if the request fails.
-        """
-        endpoint = "/smartyre/openapi/vehicle/list"
-
-        return self._new_get_request(endpoint, params={})
-
-    def get_vehicle_info(self, vehicle_id):
-        """
-        Obtains detailed information about a specific vehicle.
-        Args:
-            vehicle_id (str): The ID of the vehicle.
-        Returns:
-            The detailed information about the vehicle if available or None if the request fails.
-        """
-        if not vehicle_id:
-            return None
-
-        endpoint = "/smartyre/openapi/vehicle/detail"
-
-        params = {
-            "vehicleId": [str(vehicle_id)],
-        }
-
-        return self._new_get_request(endpoint, params=params)
-
-    def get_tires_info_by_vehicle(self, vehicle_id):
-        """
-        Obtains tire information for a specific vehicle.
-        Args:
-            vehicle_id (str): The ID of the vehicle.
-        Returns:
-            The tire information if available or None if the request fails.
-        """
-
-        if not vehicle_id:
-            return None
-
-        endpoint = "/smartyre/openapi/vehicle/tyre/data"
-
-        body_str = json.dumps({"vehicleId": vehicle_id}, separators=(",", ":"))
-
-        return self._new_post_request(
-            endpoint=endpoint,
-            body=body_str,
-        )
-
-    def get_tire_list(self):
-        """Obtain the list of tires from the Smart Tyre API.
-        Returns:
-            The list of tires if available or None if the request fails.
-        """
-
-        endpoint = "/smartyre/openapi/tyre/list"
-
-        return self._new_get_request(endpoint, params={})
-
-    def create_vehicle(self, vehicle_info):
+    def add_vehicle(self, vehicle_info):
         """
         Create a new vehicle in the Smart Tyre system.
         Args:
@@ -210,6 +151,105 @@ class SmartTyreAPI:
             body=body_str,
             returns_data=False,
         )
+
+    def get_vehicle_list(self):
+        """
+        Obtains the list of vehicles from the Smart Tyre API.
+
+        Returns:
+            The list of vehicles if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/vehicle/list"
+
+        return self._new_get_request(endpoint, params={})
+
+    def get_vehicle_info(self, vehicle_id):
+        """
+        Obtains detailed information about a specific vehicle.
+        Args:
+            vehicle_id (str): The ID of the vehicle.
+        Returns:
+            The detailed information about the vehicle if available or None if the request fails.
+        """
+        if not vehicle_id:
+            return None
+
+        endpoint = "/smartyre/openapi/vehicle/detail"
+
+        params = {
+            "vehicleId": [str(vehicle_id)],
+        }
+
+        return self._new_get_request(endpoint, params=params)
+
+
+# Tire Management
+
+    def add_tire(self, tire_info):
+        """
+        Add a new tire to the Smart Tyre system.
+        Args:
+            tire_info (dict): The information of the tire to be added.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tyre/insert"
+
+        body_str = json.dumps(tire_info, separators=(",", ":"), ensure_ascii=False)
+
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+            returns_data=False,
+        )
+
+    def update_tire(self, tire_info):
+        """
+        Update an existing tire in the Smart Tyre system.
+        Args:
+            tire_info (dict): The information of the tire to be updated.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tyre/update"
+
+        body_str = json.dumps(tire_info, separators=(",", ":"), ensure_ascii=False)
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+            returns_data=False,
+        )
+
+    def get_tires_info_by_vehicle(self, vehicle_id):
+        """
+        Obtains tire information for a specific vehicle.
+        Args:
+            vehicle_id (str): The ID of the vehicle.
+        Returns:
+            The tire information if available or None if the request fails.
+        """
+
+        if not vehicle_id:
+            return None
+
+        endpoint = "/smartyre/openapi/vehicle/tyre/data"
+
+        body_str = json.dumps({"vehicleId": vehicle_id}, separators=(",", ":"))
+
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+        )
+
+    def get_tire_list(self):
+        """Obtain the list of tires from the Smart Tyre API.
+        Returns:
+            The list of tires if available or None if the request fails.
+        """
+
+        endpoint = "/smartyre/openapi/tyre/list"
+
+        return self._new_get_request(endpoint, params={})
 
     def bind_tire_to_vehicle(self, vehicle_id, tire_id, axle_index, wheel_index):
         """
@@ -260,40 +300,9 @@ class SmartTyreAPI:
             endpoint=endpoint, body=body_str, returns_data=False
         )
 
-    def add_tire(self, tire_info):
-        """
-        Add a new tire to the Smart Tyre system.
-        Args:
-            tire_info (dict): The information of the tire to be added.
-        Returns:
-            The response from the API if available or None if the request fails.
-        """
-        endpoint = "/smartyre/openapi/tyre/insert"
 
-        body_str = json.dumps(tire_info, separators=(",", ":"), ensure_ascii=False)
 
-        return self._new_post_request(
-            endpoint=endpoint,
-            body=body_str,
-            returns_data=False,
-        )
-
-    def update_tire(self, tire_info):
-        """
-        Update an existing tire in the Smart Tyre system.
-        Args:
-            tire_info (dict): The information of the tire to be updated.
-        Returns:
-            The response from the API if available or None if the request fails.
-        """
-        endpoint = "/smartyre/openapi/tyre/update"
-
-        body_str = json.dumps(tire_info, separators=(",", ":"), ensure_ascii=False)
-        return self._new_post_request(
-            endpoint=endpoint,
-            body=body_str,
-            returns_data=False,
-        )
+# Tbox Management
 
     def add_tbox(self, tbox_info):
         """
