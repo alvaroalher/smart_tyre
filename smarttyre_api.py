@@ -69,7 +69,9 @@ class SmartTyreAPI:
             return response.json().get("data")
         return None
 
-    def _new_post_request(self, endpoint, body, need_access_token=True, returns_data=True):
+    def _new_post_request(
+        self, endpoint, body, need_access_token=True, returns_data=True
+    ):
         url = f"{self.base_url}{endpoint}"
         headers = self._new_header(need_access_token)
         headers["sign"] = self._new_signature(headers, body, {}, [])
@@ -255,7 +257,40 @@ class SmartTyreAPI:
 
         body_str = json.dumps(body, separators=(",", ":"), ensure_ascii=False)
         return self._new_post_request(
+            endpoint=endpoint, body=body_str, returns_data=False
+        )
+
+    def add_tire(self, tire_info):
+        """
+        Add a new tire to the Smart Tyre system.
+        Args:
+            tire_info (dict): The information of the tire to be added.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tyre/insert"
+
+        body_str = json.dumps(tire_info, separators=(",", ":"), ensure_ascii=False)
+
+        return self._new_post_request(
             endpoint=endpoint,
             body=body_str,
-            returns_data=False
+            returns_data=False,
+        )
+
+    def update_tire(self, tire_info):
+        """
+        Update an existing tire in the Smart Tyre system.
+        Args:
+            tire_info (dict): The information of the tire to be updated.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tyre/update"
+
+        body_str = json.dumps(tire_info, separators=(",", ":"), ensure_ascii=False)
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+            returns_data=False,
         )
