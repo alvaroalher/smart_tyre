@@ -365,3 +365,65 @@ class SmartTyreAPI:
             "id": [str(tbox_id)],
         }
         return self._new_get_request(endpoint, params=params)
+
+# Sensor Management
+
+    def add_sensor(self, sensor_info):
+        """
+        Add a new sensor to the Smart Tyre system.
+        Args:
+            sensor_info (dict): The information of the sensor to be added.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/sensor/insert"
+
+        body_str = json.dumps(sensor_info, separators=(",", ":"), ensure_ascii=False)
+
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+            returns_data=False,
+        )
+
+    def update_sensor(self, sensor_info):
+        """
+        Update an existing sensor in the Smart Tyre system.
+        Args:
+            sensor_info (dict): The information of the sensor to be updated.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/sensor/update"
+
+        body_str = json.dumps(sensor_info, separators=(",", ":"), ensure_ascii=False)
+
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+            returns_data=False,
+        )
+
+    def get_sensor_list(self):
+        """
+        Obtains the list of sensors from the Smart Tyre API.
+        Returns:
+            The list of sensors if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/sensor/list"
+
+        return self._new_get_request(endpoint, params={})
+
+    def get_sensor_info(self, sensor_id):
+        """
+        Obtains information about a specific sensor.
+        Args:
+            sensor_id (str): The ID of the sensor.
+        Returns:
+            The detailed information about the sensor if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/sensor/detail"
+        params = {
+            "id": [str(sensor_id)],
+        }
+        return self._new_get_request(endpoint, params=params)
