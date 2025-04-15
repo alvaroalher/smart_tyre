@@ -42,3 +42,8 @@ class TestAPI:
         assert tires_info is not None
         assert isinstance(tires_info, dict)
         assert len(tires_info) > 0
+
+    def test_get_tires_info_by_vehicle_invalid_id(self):
+        vehicle_id = 999999
+        tires_info = self.api.get_tires_info_by_vehicle(vehicle_id)
+        assert tires_info is None
