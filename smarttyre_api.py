@@ -69,15 +69,17 @@ class SmartTyreAPI:
             return response.json().get("data")
         return None
 
-    def _new_post_request(self, endpoint, body, need_access_token=True):
+    def _new_post_request(self, endpoint, body, need_access_token=True, returns_data=True):
         url = f"{self.base_url}{endpoint}"
         headers = self._new_header(need_access_token)
         headers["sign"] = self._new_signature(headers, body, {}, [])
         headers["Content-Type"] = "application/json"
         headers["Accept"] = "application/json"
         response = requests.post(url, headers=headers, data=body, timeout=20)
-        if response.status_code == 200:
+        if response.status_code == 200 and returns_data:
             return response.json().get("data")
+        if response.status_code == 200:
+            return response.json().get("message")
         return None
 
     def get_access_token(self):
@@ -204,6 +206,7 @@ class SmartTyreAPI:
         return self._new_post_request(
             endpoint=endpoint,
             body=body_str,
+            returns_data=False,
         )
 
     def bind_tire_to_vehicle(self, vehicle_id, tire_id, axle_index, wheel_index):
@@ -231,4 +234,28 @@ class SmartTyreAPI:
         return self._new_post_request(
             endpoint=endpoint,
             body=body_str,
+            returns_data=False,
+        )
+
+    def unbind_tire_from_vehicle(self, vehicle_id, tire_id):
+        """
+        Unbind a tire from a vehicle in the Smart Tyre system.
+        Args:
+            vehicle_id (str): The ID of the vehicle.
+            tire_id (str): The ID of the tire.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+
+        endpoint = "/smartyre/openapi/vehicle/tyre/unbind"
+        body = {
+            "vehicleId": vehicle_id,
+            "tyreId": tire_id,
+        }
+
+        body_str = json.dumps(body, separators=(",", ":"), ensure_ascii=False)
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+            returns_data=False
         )
