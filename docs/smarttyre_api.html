@@ -86,6 +86,18 @@
                         <li>
                                 <a class="function" href="#SmartTyreAPI.get_tbox_info">get_tbox_info</a>
                         </li>
+                        <li>
+                                <a class="function" href="#SmartTyreAPI.add_sensor">add_sensor</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#SmartTyreAPI.update_sensor">update_sensor</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#SmartTyreAPI.get_sensor_list">get_sensor_list</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#SmartTyreAPI.get_sensor_info">get_sensor_info</a>
+                        </li>
                 </ul>
 
             </li>
@@ -480,6 +492,68 @@ This module provides a client for interacting with the SmartTyre API.</p>
 </span><span id="L-365"><a href="#L-365"><span class="linenos">365</span></a>            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">tbox_id</span><span class="p">)],</span>
 </span><span id="L-366"><a href="#L-366"><span class="linenos">366</span></a>        <span class="p">}</span>
 </span><span id="L-367"><a href="#L-367"><span class="linenos">367</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="L-368"><a href="#L-368"><span class="linenos">368</span></a>
+</span><span id="L-369"><a href="#L-369"><span class="linenos">369</span></a><span class="c1"># Sensor Management</span>
+</span><span id="L-370"><a href="#L-370"><span class="linenos">370</span></a>
+</span><span id="L-371"><a href="#L-371"><span class="linenos">371</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor_info</span><span class="p">):</span>
+</span><span id="L-372"><a href="#L-372"><span class="linenos">372</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-373"><a href="#L-373"><span class="linenos">373</span></a><span class="sd">        Add a new sensor to the Smart Tyre system.</span>
+</span><span id="L-374"><a href="#L-374"><span class="linenos">374</span></a><span class="sd">        Args:</span>
+</span><span id="L-375"><a href="#L-375"><span class="linenos">375</span></a><span class="sd">            sensor_info (dict): The information of the sensor to be added.</span>
+</span><span id="L-376"><a href="#L-376"><span class="linenos">376</span></a><span class="sd">        Returns:</span>
+</span><span id="L-377"><a href="#L-377"><span class="linenos">377</span></a><span class="sd">            The response from the API if available or None if the request fails.</span>
+</span><span id="L-378"><a href="#L-378"><span class="linenos">378</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-379"><a href="#L-379"><span class="linenos">379</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/sensor/insert&quot;</span>
+</span><span id="L-380"><a href="#L-380"><span class="linenos">380</span></a>
+</span><span id="L-381"><a href="#L-381"><span class="linenos">381</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sensor_info</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="L-382"><a href="#L-382"><span class="linenos">382</span></a>
+</span><span id="L-383"><a href="#L-383"><span class="linenos">383</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_post_request</span><span class="p">(</span>
+</span><span id="L-384"><a href="#L-384"><span class="linenos">384</span></a>            <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="L-385"><a href="#L-385"><span class="linenos">385</span></a>            <span class="n">body</span><span class="o">=</span><span class="n">body_str</span><span class="p">,</span>
+</span><span id="L-386"><a href="#L-386"><span class="linenos">386</span></a>            <span class="n">returns_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="L-387"><a href="#L-387"><span class="linenos">387</span></a>        <span class="p">)</span>
+</span><span id="L-388"><a href="#L-388"><span class="linenos">388</span></a>
+</span><span id="L-389"><a href="#L-389"><span class="linenos">389</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">update_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor_info</span><span class="p">):</span>
+</span><span id="L-390"><a href="#L-390"><span class="linenos">390</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-391"><a href="#L-391"><span class="linenos">391</span></a><span class="sd">        Update an existing sensor in the Smart Tyre system.</span>
+</span><span id="L-392"><a href="#L-392"><span class="linenos">392</span></a><span class="sd">        Args:</span>
+</span><span id="L-393"><a href="#L-393"><span class="linenos">393</span></a><span class="sd">            sensor_info (dict): The information of the sensor to be updated.</span>
+</span><span id="L-394"><a href="#L-394"><span class="linenos">394</span></a><span class="sd">        Returns:</span>
+</span><span id="L-395"><a href="#L-395"><span class="linenos">395</span></a><span class="sd">            The response from the API if available or None if the request fails.</span>
+</span><span id="L-396"><a href="#L-396"><span class="linenos">396</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-397"><a href="#L-397"><span class="linenos">397</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/sensor/update&quot;</span>
+</span><span id="L-398"><a href="#L-398"><span class="linenos">398</span></a>
+</span><span id="L-399"><a href="#L-399"><span class="linenos">399</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sensor_info</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="L-400"><a href="#L-400"><span class="linenos">400</span></a>
+</span><span id="L-401"><a href="#L-401"><span class="linenos">401</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_post_request</span><span class="p">(</span>
+</span><span id="L-402"><a href="#L-402"><span class="linenos">402</span></a>            <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="L-403"><a href="#L-403"><span class="linenos">403</span></a>            <span class="n">body</span><span class="o">=</span><span class="n">body_str</span><span class="p">,</span>
+</span><span id="L-404"><a href="#L-404"><span class="linenos">404</span></a>            <span class="n">returns_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="L-405"><a href="#L-405"><span class="linenos">405</span></a>        <span class="p">)</span>
+</span><span id="L-406"><a href="#L-406"><span class="linenos">406</span></a>
+</span><span id="L-407"><a href="#L-407"><span class="linenos">407</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_sensor_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-408"><a href="#L-408"><span class="linenos">408</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-409"><a href="#L-409"><span class="linenos">409</span></a><span class="sd">        Obtains the list of sensors from the Smart Tyre API.</span>
+</span><span id="L-410"><a href="#L-410"><span class="linenos">410</span></a><span class="sd">        Returns:</span>
+</span><span id="L-411"><a href="#L-411"><span class="linenos">411</span></a><span class="sd">            The list of sensors if available or None if the request fails.</span>
+</span><span id="L-412"><a href="#L-412"><span class="linenos">412</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-413"><a href="#L-413"><span class="linenos">413</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/sensor/list&quot;</span>
+</span><span id="L-414"><a href="#L-414"><span class="linenos">414</span></a>
+</span><span id="L-415"><a href="#L-415"><span class="linenos">415</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span><span id="L-416"><a href="#L-416"><span class="linenos">416</span></a>
+</span><span id="L-417"><a href="#L-417"><span class="linenos">417</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_sensor_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor_id</span><span class="p">):</span>
+</span><span id="L-418"><a href="#L-418"><span class="linenos">418</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-419"><a href="#L-419"><span class="linenos">419</span></a><span class="sd">        Obtains information about a specific sensor.</span>
+</span><span id="L-420"><a href="#L-420"><span class="linenos">420</span></a><span class="sd">        Args:</span>
+</span><span id="L-421"><a href="#L-421"><span class="linenos">421</span></a><span class="sd">            sensor_id (str): The ID of the sensor.</span>
+</span><span id="L-422"><a href="#L-422"><span class="linenos">422</span></a><span class="sd">        Returns:</span>
+</span><span id="L-423"><a href="#L-423"><span class="linenos">423</span></a><span class="sd">            The detailed information about the sensor if available or None if the request fails.</span>
+</span><span id="L-424"><a href="#L-424"><span class="linenos">424</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-425"><a href="#L-425"><span class="linenos">425</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/sensor/detail&quot;</span>
+</span><span id="L-426"><a href="#L-426"><span class="linenos">426</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="L-427"><a href="#L-427"><span class="linenos">427</span></a>            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">sensor_id</span><span class="p">)],</span>
+</span><span id="L-428"><a href="#L-428"><span class="linenos">428</span></a>        <span class="p">}</span>
+</span><span id="L-429"><a href="#L-429"><span class="linenos">429</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -849,6 +923,68 @@ This module provides a client for interacting with the SmartTyre API.</p>
 </span><span id="SmartTyreAPI-366"><a href="#SmartTyreAPI-366"><span class="linenos">366</span></a>            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">tbox_id</span><span class="p">)],</span>
 </span><span id="SmartTyreAPI-367"><a href="#SmartTyreAPI-367"><span class="linenos">367</span></a>        <span class="p">}</span>
 </span><span id="SmartTyreAPI-368"><a href="#SmartTyreAPI-368"><span class="linenos">368</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="SmartTyreAPI-369"><a href="#SmartTyreAPI-369"><span class="linenos">369</span></a>
+</span><span id="SmartTyreAPI-370"><a href="#SmartTyreAPI-370"><span class="linenos">370</span></a><span class="c1"># Sensor Management</span>
+</span><span id="SmartTyreAPI-371"><a href="#SmartTyreAPI-371"><span class="linenos">371</span></a>
+</span><span id="SmartTyreAPI-372"><a href="#SmartTyreAPI-372"><span class="linenos">372</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor_info</span><span class="p">):</span>
+</span><span id="SmartTyreAPI-373"><a href="#SmartTyreAPI-373"><span class="linenos">373</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-374"><a href="#SmartTyreAPI-374"><span class="linenos">374</span></a><span class="sd">        Add a new sensor to the Smart Tyre system.</span>
+</span><span id="SmartTyreAPI-375"><a href="#SmartTyreAPI-375"><span class="linenos">375</span></a><span class="sd">        Args:</span>
+</span><span id="SmartTyreAPI-376"><a href="#SmartTyreAPI-376"><span class="linenos">376</span></a><span class="sd">            sensor_info (dict): The information of the sensor to be added.</span>
+</span><span id="SmartTyreAPI-377"><a href="#SmartTyreAPI-377"><span class="linenos">377</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI-378"><a href="#SmartTyreAPI-378"><span class="linenos">378</span></a><span class="sd">            The response from the API if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI-379"><a href="#SmartTyreAPI-379"><span class="linenos">379</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-380"><a href="#SmartTyreAPI-380"><span class="linenos">380</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/sensor/insert&quot;</span>
+</span><span id="SmartTyreAPI-381"><a href="#SmartTyreAPI-381"><span class="linenos">381</span></a>
+</span><span id="SmartTyreAPI-382"><a href="#SmartTyreAPI-382"><span class="linenos">382</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sensor_info</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="SmartTyreAPI-383"><a href="#SmartTyreAPI-383"><span class="linenos">383</span></a>
+</span><span id="SmartTyreAPI-384"><a href="#SmartTyreAPI-384"><span class="linenos">384</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_post_request</span><span class="p">(</span>
+</span><span id="SmartTyreAPI-385"><a href="#SmartTyreAPI-385"><span class="linenos">385</span></a>            <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-386"><a href="#SmartTyreAPI-386"><span class="linenos">386</span></a>            <span class="n">body</span><span class="o">=</span><span class="n">body_str</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-387"><a href="#SmartTyreAPI-387"><span class="linenos">387</span></a>            <span class="n">returns_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-388"><a href="#SmartTyreAPI-388"><span class="linenos">388</span></a>        <span class="p">)</span>
+</span><span id="SmartTyreAPI-389"><a href="#SmartTyreAPI-389"><span class="linenos">389</span></a>
+</span><span id="SmartTyreAPI-390"><a href="#SmartTyreAPI-390"><span class="linenos">390</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">update_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor_info</span><span class="p">):</span>
+</span><span id="SmartTyreAPI-391"><a href="#SmartTyreAPI-391"><span class="linenos">391</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-392"><a href="#SmartTyreAPI-392"><span class="linenos">392</span></a><span class="sd">        Update an existing sensor in the Smart Tyre system.</span>
+</span><span id="SmartTyreAPI-393"><a href="#SmartTyreAPI-393"><span class="linenos">393</span></a><span class="sd">        Args:</span>
+</span><span id="SmartTyreAPI-394"><a href="#SmartTyreAPI-394"><span class="linenos">394</span></a><span class="sd">            sensor_info (dict): The information of the sensor to be updated.</span>
+</span><span id="SmartTyreAPI-395"><a href="#SmartTyreAPI-395"><span class="linenos">395</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI-396"><a href="#SmartTyreAPI-396"><span class="linenos">396</span></a><span class="sd">            The response from the API if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI-397"><a href="#SmartTyreAPI-397"><span class="linenos">397</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-398"><a href="#SmartTyreAPI-398"><span class="linenos">398</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/sensor/update&quot;</span>
+</span><span id="SmartTyreAPI-399"><a href="#SmartTyreAPI-399"><span class="linenos">399</span></a>
+</span><span id="SmartTyreAPI-400"><a href="#SmartTyreAPI-400"><span class="linenos">400</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sensor_info</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="SmartTyreAPI-401"><a href="#SmartTyreAPI-401"><span class="linenos">401</span></a>
+</span><span id="SmartTyreAPI-402"><a href="#SmartTyreAPI-402"><span class="linenos">402</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_post_request</span><span class="p">(</span>
+</span><span id="SmartTyreAPI-403"><a href="#SmartTyreAPI-403"><span class="linenos">403</span></a>            <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-404"><a href="#SmartTyreAPI-404"><span class="linenos">404</span></a>            <span class="n">body</span><span class="o">=</span><span class="n">body_str</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-405"><a href="#SmartTyreAPI-405"><span class="linenos">405</span></a>            <span class="n">returns_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-406"><a href="#SmartTyreAPI-406"><span class="linenos">406</span></a>        <span class="p">)</span>
+</span><span id="SmartTyreAPI-407"><a href="#SmartTyreAPI-407"><span class="linenos">407</span></a>
+</span><span id="SmartTyreAPI-408"><a href="#SmartTyreAPI-408"><span class="linenos">408</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_sensor_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="SmartTyreAPI-409"><a href="#SmartTyreAPI-409"><span class="linenos">409</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-410"><a href="#SmartTyreAPI-410"><span class="linenos">410</span></a><span class="sd">        Obtains the list of sensors from the Smart Tyre API.</span>
+</span><span id="SmartTyreAPI-411"><a href="#SmartTyreAPI-411"><span class="linenos">411</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI-412"><a href="#SmartTyreAPI-412"><span class="linenos">412</span></a><span class="sd">            The list of sensors if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI-413"><a href="#SmartTyreAPI-413"><span class="linenos">413</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-414"><a href="#SmartTyreAPI-414"><span class="linenos">414</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/sensor/list&quot;</span>
+</span><span id="SmartTyreAPI-415"><a href="#SmartTyreAPI-415"><span class="linenos">415</span></a>
+</span><span id="SmartTyreAPI-416"><a href="#SmartTyreAPI-416"><span class="linenos">416</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span><span id="SmartTyreAPI-417"><a href="#SmartTyreAPI-417"><span class="linenos">417</span></a>
+</span><span id="SmartTyreAPI-418"><a href="#SmartTyreAPI-418"><span class="linenos">418</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_sensor_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor_id</span><span class="p">):</span>
+</span><span id="SmartTyreAPI-419"><a href="#SmartTyreAPI-419"><span class="linenos">419</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-420"><a href="#SmartTyreAPI-420"><span class="linenos">420</span></a><span class="sd">        Obtains information about a specific sensor.</span>
+</span><span id="SmartTyreAPI-421"><a href="#SmartTyreAPI-421"><span class="linenos">421</span></a><span class="sd">        Args:</span>
+</span><span id="SmartTyreAPI-422"><a href="#SmartTyreAPI-422"><span class="linenos">422</span></a><span class="sd">            sensor_id (str): The ID of the sensor.</span>
+</span><span id="SmartTyreAPI-423"><a href="#SmartTyreAPI-423"><span class="linenos">423</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI-424"><a href="#SmartTyreAPI-424"><span class="linenos">424</span></a><span class="sd">            The detailed information about the sensor if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI-425"><a href="#SmartTyreAPI-425"><span class="linenos">425</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-426"><a href="#SmartTyreAPI-426"><span class="linenos">426</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/sensor/detail&quot;</span>
+</span><span id="SmartTyreAPI-427"><a href="#SmartTyreAPI-427"><span class="linenos">427</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="SmartTyreAPI-428"><a href="#SmartTyreAPI-428"><span class="linenos">428</span></a>            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">sensor_id</span><span class="p">)],</span>
+</span><span id="SmartTyreAPI-429"><a href="#SmartTyreAPI-429"><span class="linenos">429</span></a>        <span class="p">}</span>
+</span><span id="SmartTyreAPI-430"><a href="#SmartTyreAPI-430"><span class="linenos">430</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1543,6 +1679,152 @@ Args:
     tbox_id (str): The ID of the TBox.
 Returns:
     The detailed information about the TBox if available or None if the request fails.</p>
+</div>
+
+
+                            </div>
+                            <div id="SmartTyreAPI.add_sensor" class="classattr">
+                                        <input id="SmartTyreAPI.add_sensor-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">add_sensor</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">sensor_info</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="SmartTyreAPI.add_sensor-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#SmartTyreAPI.add_sensor"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.add_sensor-372"><a href="#SmartTyreAPI.add_sensor-372"><span class="linenos">372</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor_info</span><span class="p">):</span>
+</span><span id="SmartTyreAPI.add_sensor-373"><a href="#SmartTyreAPI.add_sensor-373"><span class="linenos">373</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.add_sensor-374"><a href="#SmartTyreAPI.add_sensor-374"><span class="linenos">374</span></a><span class="sd">        Add a new sensor to the Smart Tyre system.</span>
+</span><span id="SmartTyreAPI.add_sensor-375"><a href="#SmartTyreAPI.add_sensor-375"><span class="linenos">375</span></a><span class="sd">        Args:</span>
+</span><span id="SmartTyreAPI.add_sensor-376"><a href="#SmartTyreAPI.add_sensor-376"><span class="linenos">376</span></a><span class="sd">            sensor_info (dict): The information of the sensor to be added.</span>
+</span><span id="SmartTyreAPI.add_sensor-377"><a href="#SmartTyreAPI.add_sensor-377"><span class="linenos">377</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI.add_sensor-378"><a href="#SmartTyreAPI.add_sensor-378"><span class="linenos">378</span></a><span class="sd">            The response from the API if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI.add_sensor-379"><a href="#SmartTyreAPI.add_sensor-379"><span class="linenos">379</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.add_sensor-380"><a href="#SmartTyreAPI.add_sensor-380"><span class="linenos">380</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/sensor/insert&quot;</span>
+</span><span id="SmartTyreAPI.add_sensor-381"><a href="#SmartTyreAPI.add_sensor-381"><span class="linenos">381</span></a>
+</span><span id="SmartTyreAPI.add_sensor-382"><a href="#SmartTyreAPI.add_sensor-382"><span class="linenos">382</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sensor_info</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="SmartTyreAPI.add_sensor-383"><a href="#SmartTyreAPI.add_sensor-383"><span class="linenos">383</span></a>
+</span><span id="SmartTyreAPI.add_sensor-384"><a href="#SmartTyreAPI.add_sensor-384"><span class="linenos">384</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_post_request</span><span class="p">(</span>
+</span><span id="SmartTyreAPI.add_sensor-385"><a href="#SmartTyreAPI.add_sensor-385"><span class="linenos">385</span></a>            <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.add_sensor-386"><a href="#SmartTyreAPI.add_sensor-386"><span class="linenos">386</span></a>            <span class="n">body</span><span class="o">=</span><span class="n">body_str</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.add_sensor-387"><a href="#SmartTyreAPI.add_sensor-387"><span class="linenos">387</span></a>            <span class="n">returns_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.add_sensor-388"><a href="#SmartTyreAPI.add_sensor-388"><span class="linenos">388</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Add a new sensor to the Smart Tyre system.
+Args:
+    sensor_info (dict): The information of the sensor to be added.
+Returns:
+    The response from the API if available or None if the request fails.</p>
+</div>
+
+
+                            </div>
+                            <div id="SmartTyreAPI.update_sensor" class="classattr">
+                                        <input id="SmartTyreAPI.update_sensor-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">update_sensor</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">sensor_info</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="SmartTyreAPI.update_sensor-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#SmartTyreAPI.update_sensor"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.update_sensor-390"><a href="#SmartTyreAPI.update_sensor-390"><span class="linenos">390</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">update_sensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor_info</span><span class="p">):</span>
+</span><span id="SmartTyreAPI.update_sensor-391"><a href="#SmartTyreAPI.update_sensor-391"><span class="linenos">391</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.update_sensor-392"><a href="#SmartTyreAPI.update_sensor-392"><span class="linenos">392</span></a><span class="sd">        Update an existing sensor in the Smart Tyre system.</span>
+</span><span id="SmartTyreAPI.update_sensor-393"><a href="#SmartTyreAPI.update_sensor-393"><span class="linenos">393</span></a><span class="sd">        Args:</span>
+</span><span id="SmartTyreAPI.update_sensor-394"><a href="#SmartTyreAPI.update_sensor-394"><span class="linenos">394</span></a><span class="sd">            sensor_info (dict): The information of the sensor to be updated.</span>
+</span><span id="SmartTyreAPI.update_sensor-395"><a href="#SmartTyreAPI.update_sensor-395"><span class="linenos">395</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI.update_sensor-396"><a href="#SmartTyreAPI.update_sensor-396"><span class="linenos">396</span></a><span class="sd">            The response from the API if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI.update_sensor-397"><a href="#SmartTyreAPI.update_sensor-397"><span class="linenos">397</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.update_sensor-398"><a href="#SmartTyreAPI.update_sensor-398"><span class="linenos">398</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/sensor/update&quot;</span>
+</span><span id="SmartTyreAPI.update_sensor-399"><a href="#SmartTyreAPI.update_sensor-399"><span class="linenos">399</span></a>
+</span><span id="SmartTyreAPI.update_sensor-400"><a href="#SmartTyreAPI.update_sensor-400"><span class="linenos">400</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sensor_info</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="SmartTyreAPI.update_sensor-401"><a href="#SmartTyreAPI.update_sensor-401"><span class="linenos">401</span></a>
+</span><span id="SmartTyreAPI.update_sensor-402"><a href="#SmartTyreAPI.update_sensor-402"><span class="linenos">402</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_post_request</span><span class="p">(</span>
+</span><span id="SmartTyreAPI.update_sensor-403"><a href="#SmartTyreAPI.update_sensor-403"><span class="linenos">403</span></a>            <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.update_sensor-404"><a href="#SmartTyreAPI.update_sensor-404"><span class="linenos">404</span></a>            <span class="n">body</span><span class="o">=</span><span class="n">body_str</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.update_sensor-405"><a href="#SmartTyreAPI.update_sensor-405"><span class="linenos">405</span></a>            <span class="n">returns_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.update_sensor-406"><a href="#SmartTyreAPI.update_sensor-406"><span class="linenos">406</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Update an existing sensor in the Smart Tyre system.
+Args:
+    sensor_info (dict): The information of the sensor to be updated.
+Returns:
+    The response from the API if available or None if the request fails.</p>
+</div>
+
+
+                            </div>
+                            <div id="SmartTyreAPI.get_sensor_list" class="classattr">
+                                        <input id="SmartTyreAPI.get_sensor_list-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_sensor_list</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="SmartTyreAPI.get_sensor_list-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#SmartTyreAPI.get_sensor_list"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.get_sensor_list-408"><a href="#SmartTyreAPI.get_sensor_list-408"><span class="linenos">408</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_sensor_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="SmartTyreAPI.get_sensor_list-409"><a href="#SmartTyreAPI.get_sensor_list-409"><span class="linenos">409</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.get_sensor_list-410"><a href="#SmartTyreAPI.get_sensor_list-410"><span class="linenos">410</span></a><span class="sd">        Obtains the list of sensors from the Smart Tyre API.</span>
+</span><span id="SmartTyreAPI.get_sensor_list-411"><a href="#SmartTyreAPI.get_sensor_list-411"><span class="linenos">411</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI.get_sensor_list-412"><a href="#SmartTyreAPI.get_sensor_list-412"><span class="linenos">412</span></a><span class="sd">            The list of sensors if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI.get_sensor_list-413"><a href="#SmartTyreAPI.get_sensor_list-413"><span class="linenos">413</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.get_sensor_list-414"><a href="#SmartTyreAPI.get_sensor_list-414"><span class="linenos">414</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/sensor/list&quot;</span>
+</span><span id="SmartTyreAPI.get_sensor_list-415"><a href="#SmartTyreAPI.get_sensor_list-415"><span class="linenos">415</span></a>
+</span><span id="SmartTyreAPI.get_sensor_list-416"><a href="#SmartTyreAPI.get_sensor_list-416"><span class="linenos">416</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Obtains the list of sensors from the Smart Tyre API.
+Returns:
+    The list of sensors if available or None if the request fails.</p>
+</div>
+
+
+                            </div>
+                            <div id="SmartTyreAPI.get_sensor_info" class="classattr">
+                                        <input id="SmartTyreAPI.get_sensor_info-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_sensor_info</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">sensor_id</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="SmartTyreAPI.get_sensor_info-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#SmartTyreAPI.get_sensor_info"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.get_sensor_info-418"><a href="#SmartTyreAPI.get_sensor_info-418"><span class="linenos">418</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_sensor_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sensor_id</span><span class="p">):</span>
+</span><span id="SmartTyreAPI.get_sensor_info-419"><a href="#SmartTyreAPI.get_sensor_info-419"><span class="linenos">419</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.get_sensor_info-420"><a href="#SmartTyreAPI.get_sensor_info-420"><span class="linenos">420</span></a><span class="sd">        Obtains information about a specific sensor.</span>
+</span><span id="SmartTyreAPI.get_sensor_info-421"><a href="#SmartTyreAPI.get_sensor_info-421"><span class="linenos">421</span></a><span class="sd">        Args:</span>
+</span><span id="SmartTyreAPI.get_sensor_info-422"><a href="#SmartTyreAPI.get_sensor_info-422"><span class="linenos">422</span></a><span class="sd">            sensor_id (str): The ID of the sensor.</span>
+</span><span id="SmartTyreAPI.get_sensor_info-423"><a href="#SmartTyreAPI.get_sensor_info-423"><span class="linenos">423</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI.get_sensor_info-424"><a href="#SmartTyreAPI.get_sensor_info-424"><span class="linenos">424</span></a><span class="sd">            The detailed information about the sensor if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI.get_sensor_info-425"><a href="#SmartTyreAPI.get_sensor_info-425"><span class="linenos">425</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.get_sensor_info-426"><a href="#SmartTyreAPI.get_sensor_info-426"><span class="linenos">426</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/sensor/detail&quot;</span>
+</span><span id="SmartTyreAPI.get_sensor_info-427"><a href="#SmartTyreAPI.get_sensor_info-427"><span class="linenos">427</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="SmartTyreAPI.get_sensor_info-428"><a href="#SmartTyreAPI.get_sensor_info-428"><span class="linenos">428</span></a>            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">sensor_id</span><span class="p">)],</span>
+</span><span id="SmartTyreAPI.get_sensor_info-429"><a href="#SmartTyreAPI.get_sensor_info-429"><span class="linenos">429</span></a>        <span class="p">}</span>
+</span><span id="SmartTyreAPI.get_sensor_info-430"><a href="#SmartTyreAPI.get_sensor_info-430"><span class="linenos">430</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Obtains information about a specific sensor.
+Args:
+    sensor_id (str): The ID of the sensor.
+Returns:
+    The detailed information about the sensor if available or None if the request fails.</p>
 </div>
 
 
