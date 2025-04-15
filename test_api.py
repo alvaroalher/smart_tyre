@@ -36,6 +36,12 @@ class TestAPI:
         assert isinstance(vehicle_info, dict)
         assert vehicle_info.get("id") == vehicle_id
 
+    def test_get_tire_list(self):
+        tires = self.api.get_tire_list()
+        assert tires is not None
+        assert isinstance(tires, dict)
+        assert len(tires) > 0
+
     def test_get_tires_info_by_vehicle(self):
         vehicle_id = 7543
         tires_info = self.api.get_tires_info_by_vehicle(vehicle_id)
@@ -47,3 +53,9 @@ class TestAPI:
         vehicle_id = 999999
         tires_info = self.api.get_tires_info_by_vehicle(vehicle_id)
         assert tires_info is None
+
+    def test_get_tbox_list(self):
+        tbox_list = self.api.get_tboxes_list()
+        assert tbox_list is not None
+        assert isinstance(tbox_list, dict)
+        assert len(tbox_list) > 0
