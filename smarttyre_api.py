@@ -171,3 +171,64 @@ class SmartTyreAPI:
         endpoint = "/smartyre/openapi/tyre/list"
 
         return self._new_get_request(endpoint, params={})
+
+    def create_vehicle(self, vehicle_info):
+        """
+        Create a new vehicle in the Smart Tyre system.
+        Args:
+            vehicle_info (dict): The information of the vehicle to be created.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/vehicle/insert"
+
+        body_str = json.dumps(vehicle_info, separators=(",", ":"), ensure_ascii=False)
+
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+        )
+
+    def update_vehicle(self, vehicle_info):
+        """
+        Update an existing vehicle in the Smart Tyre system.
+        Args:
+            vehicle_info (dict): The information of the vehicle to be updated.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/vehicle/update"
+
+        body_str = json.dumps(vehicle_info, separators=(",", ":"), ensure_ascii=False)
+
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+        )
+
+    def bind_tire_to_vehicle(self, vehicle_id, tire_id, axle_index, wheel_index):
+        """
+        Bind a tire to a vehicle in the Smart Tyre system.
+        Args:
+            vehicle_id (str): The ID of the vehicle.
+            tire_id (str): The ID of the tire.
+            axle_index (int): The index of the axle.
+            wheel_index (int): The index of the wheel.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/vehicle/tyre/bind"
+
+        body = {
+            "vehicleId": vehicle_id,
+            "tyreId": tire_id,
+            "axleIndex": axle_index,
+            "wheelIndex": wheel_index,
+        }
+
+        body_str = json.dumps(body, separators=(",", ":"), ensure_ascii=False)
+
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+        )
