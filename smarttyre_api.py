@@ -294,3 +294,65 @@ class SmartTyreAPI:
             body=body_str,
             returns_data=False,
         )
+
+    def add_tbox(self, tbox_info):
+        """
+        Add a new TBox to the Smart Tyre system.
+        Args:
+            tbox_info (dict): The information of the TBox to be added.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tbox/insert"
+
+        body_str = json.dumps(tbox_info, separators=(",", ":"), ensure_ascii=False)
+
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+            returns_data=False,
+        )
+
+    def update_tbox(self, tbox_info):
+        """
+        Updates an existing TBox in the Smart Tyre system.
+        Args:
+            tbox_info (dict): The information of the TBox to be updated.
+
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tbox/update"
+
+        body_str = json.dumps(tbox_info, separators=(",", ":"), ensure_ascii=False)
+
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+            returns_data=False,
+        )
+
+    def get_tboxes_list(self):
+        """
+        Obtains the list of TBoxes from the Smart Tyre API.
+
+        Returns:
+            The list of TBoxes if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tbox/list"
+
+        return self._new_get_request(endpoint, params={})
+
+    def get_tbox_info(self, tbox_id):
+        """
+        Obtains information about a specific TBox.
+        Args:
+            tbox_id (str): The ID of the TBox.
+        Returns:
+            The detailed information about the TBox if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tbox/detail"
+        params = {
+            "id": [str(tbox_id)],
+        }
+        return self._new_get_request(endpoint, params=params)
