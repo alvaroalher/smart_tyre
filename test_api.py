@@ -59,3 +59,9 @@ class TestAPI:
         assert tbox_list is not None
         assert isinstance(tbox_list, dict)
         assert len(tbox_list) > 0
+
+    def test_get_sensor_list(self):
+        sensors = self.api.get_sensor_list()
+        assert sensors is not None
+        assert isinstance(sensors, dict)
+        assert len(sensors) > 0
