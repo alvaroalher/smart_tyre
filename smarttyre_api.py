@@ -251,6 +251,20 @@ class SmartTyreAPI:
 
         return self._new_get_request(endpoint, params={})
 
+    def get_tire_info(self, tire_id):
+        """
+        Obtains detailed information about a specific tire.
+        Args:
+            tire_id (str): The ID of the tire.
+        Returns:
+            The detailed information about the tire if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tyre/detail"
+        params = {
+            "id": [str(tire_id)],
+        }
+        return self._new_get_request(endpoint, params=params)
+
     def bind_tire_to_vehicle(self, vehicle_id, tire_id, axle_index, wheel_index):
         """
         Bind a tire to a vehicle in the Smart Tyre system.
