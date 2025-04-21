@@ -20,7 +20,49 @@ if __name__ == "__main__":
         sign_key=SIGN_KEY,
     )
 
-    #print(tire_api.get_access_token())
-    #print(tire_api.get_vehicle_list())
-    #print(tire_api.get_vehicle_info(7543))
-    print(tire_api.get_sensor_list())
+    # Example usage
+
+    # Get access token
+    access_token = tire_api.get_access_token()
+    print("Access Token:", access_token)
+
+    # Get vehicle list, tire list, sensor list, and tbox list
+    vehicle_list = tire_api.get_vehicle_list()
+    print("Vehicle List:", vehicle_list)
+
+    tire_list = tire_api.get_tire_list()
+    print("Tire List:", tire_list)
+
+    sensor_list = tire_api.get_sensor_list()
+    print("Sensor List:", sensor_list)
+
+    tbox_list = tire_api.get_tboxes_list()
+    print("Tbox List:", tbox_list)
+
+    # Get vehicle info, tire info, and tires info by vehicle
+    # Replace with actual vehicle and tire IDs from your data
+    VEHICLE_ID = 7543
+    vehicle_info = tire_api.get_vehicle_info(vehicle_id=VEHICLE_ID)
+    print("Vehicle Info:", vehicle_info)
+
+    tires_info = tire_api.get_tires_info_by_vehicle(vehicle_id=VEHICLE_ID)
+    print("Tires Info by Vehicle:", tires_info)
+
+    TIRE_ID = 47048
+    tire_info = tire_api.get_tire_info(tire_id=TIRE_ID)
+    print("Tire Info:", tire_info)
+
+    # Get sensor info and tbox info
+    # Replace with actual sensor and tbox IDs from your data
+    SENSOR_ID = 48899
+    sensor_info = tire_api.get_sensor_info(sensor_id=SENSOR_ID)
+    print("Sensor Info:", sensor_info)
+
+    TBOX_ID = 8694
+    tbox_info = tire_api.get_tbox_info(tbox_id=TBOX_ID)
+    print("Tbox Info:", tbox_info)
+
+
+
+
+
