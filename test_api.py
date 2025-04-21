@@ -60,8 +60,24 @@ class TestAPI:
         assert isinstance(tbox_list, dict)
         assert len(tbox_list) > 0
 
+    def test_get_tbox_info(self):
+        tbox_id = 8694
+        tbox_info = self.api.get_tbox_info(tbox_id)
+        assert tbox_info is not None
+        assert isinstance(tbox_info, dict)
+        assert tbox_info.get("id") == tbox_id
+
     def test_get_sensor_list(self):
         sensors = self.api.get_sensor_list()
         assert sensors is not None
         assert isinstance(sensors, dict)
         assert len(sensors) > 0
+
+    def test_get_sensor_info(self):
+        sensor_id = 48902
+        sensor_info = self.api.get_sensor_info(sensor_id)
+        assert sensor_info is not None
+        assert isinstance(sensor_info, dict)
+        assert sensor_info.get("id") == sensor_id
+
+
