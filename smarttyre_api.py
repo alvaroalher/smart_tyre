@@ -115,7 +115,7 @@ class SmartTyreAPI:
 
         return response.get("accessToken") if response else None
 
-# Vehicle Management
+    # Vehicle Management
 
     def add_vehicle(self, vehicle_info):
         """
@@ -182,8 +182,7 @@ class SmartTyreAPI:
 
         return self._new_get_request(endpoint, params=params)
 
-
-# Tire Management
+    # Tire Management
 
     def add_tire(self, tire_info):
         """
@@ -314,9 +313,7 @@ class SmartTyreAPI:
             endpoint=endpoint, body=body_str, returns_data=False
         )
 
-
-
-# Tbox Management
+    # Tbox Management
 
     def add_tbox(self, tbox_info):
         """
@@ -380,7 +377,7 @@ class SmartTyreAPI:
         }
         return self._new_get_request(endpoint, params=params)
 
-# Sensor Management
+    # Sensor Management
 
     def add_sensor(self, sensor_info):
         """
@@ -441,3 +438,43 @@ class SmartTyreAPI:
             "id": [str(sensor_id)],
         }
         return self._new_get_request(endpoint, params=params)
+
+    def get_tire_brands(self):
+        """
+        Obtains the list of tire brands from the Smart Tyre API.
+        Returns:
+            The list of tire brands if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tyre/brand/all"
+
+        return self._new_get_request(endpoint, params={})
+
+    def get_tire_sizes(self):
+        """
+        Obtains the list of tire sizes from the Smart Tyre API.
+        Returns:
+            The list of tire sizes if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tyre/size/all"
+
+        return self._new_get_request(endpoint, params={})
+
+    def get_vehicle_models(self):
+        """
+        Obtains the list of vehicle models from the Smart Tyre API.
+        Returns:
+            The list of vehicle models if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/vehicle/model/all"
+
+        return self._new_get_request(endpoint, params={})
+
+    def get_axle_types(self):
+        """
+        Obtains the list of axle types from the Smart Tyre API.
+        Returns:
+            The list of axle types if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/vehicle/axle/all"
+
+        return self._new_get_request(endpoint, params={})

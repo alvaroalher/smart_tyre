@@ -1,4 +1,5 @@
 """Test the SmartTyreAPI class."""
+
 import os
 
 from dotenv import load_dotenv
@@ -87,6 +88,26 @@ class TestAPI:
         assert isinstance(sensor_info, dict)
         assert sensor_info.get("id") == sensor_id
 
+    def test_get_tire_brands(self):
+        brands = self.api.get_tire_brands()
+        assert brands is not None
+        assert isinstance(brands, list)
+        assert len(brands) > 0
 
+    def test_get_tire_sizes(self):
+        sizes = self.api.get_tire_sizes()
+        assert sizes is not None
+        assert isinstance(sizes, list)
+        assert len(sizes) > 0
 
+    def test_get_vehicle_models(self):
+        models = self.api.get_vehicle_models()
+        assert models is not None
+        assert isinstance(models, list)
+        assert len(models) > 0
 
+    def test_get_axle_types(self):
+        axle_types = self.api.get_axle_types()
+        assert axle_types is not None
+        assert isinstance(axle_types, list)
+        assert len(axle_types) > 0
