@@ -62,7 +62,19 @@ if __name__ == "__main__":
     tbox_info = tire_api.get_tbox_info(tbox_id=TBOX_ID)
     print("Tbox Info:", tbox_info)
 
+    # Get tire brands
+    tire_brands = tire_api.get_tire_brands()
+    print("Tire Brands:", tire_brands)
 
+    # Get tire sizes
+    tire_sizes = tire_api.get_tire_sizes()
+    print("Tire Sizes:", tire_sizes)
 
+    # Get vehicle models
+    vehicle_models = tire_api.get_vehicle_models()
+    print("Vehicle Models:", vehicle_models)
 
+    # Get axle types
+    axle_types = tire_api.get_axle_types()
+    print("Axle Types:", axle_types)
 
