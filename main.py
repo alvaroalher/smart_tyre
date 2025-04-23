@@ -38,7 +38,10 @@ def menu():
     print("20. Update Tbox")
     print("21. Get Tbox List")
     print("22. Get Sensor List")
-    print("Please select an option (1-22): ", end="")
+    print("23. Bind Tire")
+    print("24. Unbind Tire")
+    print("25. Exit")
+    print("Please select an option (1-25): ", end="")
 
 
 if __name__ == "__main__":
@@ -181,3 +184,19 @@ if __name__ == "__main__":
         # Get Sensor List
         sensor_list = tire_api.get_sensor_list()
         print("Sensor List:", sensor_list)
+    elif choice == "23":
+        vehicle_id = input("Enter Vehicle ID: ")
+        tire_id = input("Enter Tire ID: ")
+        axle_idx = input("Enter Axle Index: ")
+        wheel_id = input("Enter Wheel ID: ")
+        response = tire_api.bind_tire_to_vehicle(
+            vehicle_id, tire_id, axle_idx, wheel_id
+        )
+        print("Bind Tire Response:", response)
+    elif choice == "24":
+        vehicle_id = input("Enter Vehicle ID: ")
+        tire_id = input("Enter Tire ID: ")
+        response = tire_api.unbind_tire_from_vehicle(vehicle_id, tire_id)
+        print("Unbind Tire Response:", response)
+    else:
+        print("Exiting...")
