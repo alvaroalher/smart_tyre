@@ -133,8 +133,6 @@ class SmartTyreAPI:
                 - modelId (str): The ID of the vehicle model
                 - orgId (str): The ID of the organization
 
-        Note: The vehicle_info dictionary must follow the API requirements.
-
         Example:
             ```python
             new_vehicle = {
@@ -147,6 +145,9 @@ class SmartTyreAPI:
                 "orgId": "218"
             }
             ```
+
+        Note: The vehicle_info dictionary must follow the API requirements.
+        Check the API documentation for optional fields.
 
         Returns:
             The response from the API if available or None if the request fails.
@@ -178,8 +179,6 @@ class SmartTyreAPI:
                 - modelId (str): The ID of the vehicle model
                 - orgId (str): The ID of the organization
 
-        Note: The vehicle_info dictionary must follow the API requirements.
-
         Example:
              ```python
             updated_vehicle = {
@@ -193,6 +192,8 @@ class SmartTyreAPI:
                 "orgId": "218",
             }
             ```
+        Note: The vehicle_info dictionary must follow the API requirements.
+        Check the API documentation for optional fields.
 
         Returns:
             The response from the API if available or None if the request fails.
@@ -244,6 +245,27 @@ class SmartTyreAPI:
         Adds a new tire to the Smart Tyre system.
         Args:
             tire_info (dict): The information of the tire to be added.
+
+                The dictionary should contain:
+                - tyreCode (str): The identification code of the tire
+                - tyreBrandId (str): The ID of the tire brand
+                - tyreSizeId (str): The ID of the tire size
+                - tyrePattern (str): The pattern of the tire
+                - initialTreadDepth (str): The initial tread depth of the tire
+
+        Example:
+            ```python
+            new_tire = {
+                "tyreCode": "ABC123",
+                "tyreBrandId": "1",
+                "tyreSizeId": "121",
+                "tyrePattern": "Pattern A",
+                "initialTreadDepth": "10"
+            }
+            ```
+
+        Note: The tire_info dictionary must follow the API requirements.
+        Check the API documentation for optional fields.
         Returns:
             The response from the API if available or None if the request fails.
         """
@@ -262,6 +284,28 @@ class SmartTyreAPI:
         Updates an existing tire in the Smart Tyre system.
         Args:
             tire_info (dict): The information of the tire to be updated.
+
+                The dictionary should contain:
+                - id (str): The ID of the tire to be updated
+                - tyreCode (str): The identification code of the tire, this cannot be changed
+                - tyreBrandId (str): The ID of the tire brand
+                - tyreSizeId (str): The ID of the tire size
+                - tyrePattern (str): The pattern of the tire
+                - initialTreadDepth (str): The initial tread depth of the tire
+        Example:
+            ```python
+            updated_tire = {
+                "id": "47414",
+                "tyreCode": "ABC123",
+                "tyreBrandId": "8",
+                "tyreSizeId": "121",
+                "tyrePattern": "Pattern B",
+                "initialTreadDepth": "12"
+            }
+            ```
+        Note: The tire_info dictionary must follow the API requirements.
+        Check the API documentation for optional fields.
+
         Returns:
             The response from the API if available or None if the request fails.
         """
