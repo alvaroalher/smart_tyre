@@ -78,3 +78,18 @@ if __name__ == "__main__":
     axle_types = tire_api.get_axle_types()
     print("Axle Types:", axle_types)
 
+    new_vehicle = {
+        "isTractor": 0,
+        "licensePlateNumber": "ABC123",
+        "emptyWeight": 1000,
+        "fullWeight": 2000,
+        "axleTypeId": "2",
+        "modelId": "31",
+        "orgId": "218",
+    }
+
+    # Register a new vehicle
+    response = tire_api.add_vehicle(new_vehicle)
+    print("Add Vehicle Response:", response)
+
+
