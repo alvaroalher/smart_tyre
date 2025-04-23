@@ -159,6 +159,27 @@ class SmartTyreAPI:
         Update an existing vehicle in the Smart Tyre system.
         Args:
             vehicle_info (dict): The information of the vehicle to be updated.
+            The dictionary should contain the following keys:
+                - id (str): The ID of the vehicle to be updated
+                - isTractor (int): 0 for non-tractor, 1 for tractor, 2 for trailer
+                - licensePlateNumber (str): The license plate number of the vehicle
+                - emptyWeight (str): The empty weight of the vehicle
+                - fullWeight (str): The full weight of the vehicle
+                - axleTypeId (str): The ID of the axle type
+                - modelId (str): The ID of the vehicle model
+                - orgId (str): The ID of the organization
+        Note: The vehicle_info dictionary should be structured according to the API requirements.
+        Example:
+        updated_vehicle = {
+            "id": "7609",
+            "isTractor": 0,
+            "licensePlateNumber": "XYZ789",
+            "emptyWeight": "1200",
+            "fullWeight": "2200",
+            "axleTypeId": "2",
+            "modelId": "31",
+            "orgId": "218",
+        }
         Returns:
             The response from the API if available or None if the request fails.
         """
