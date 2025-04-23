@@ -30,8 +30,13 @@ def menu():
     print("14. Update Vehicle")
     print("15. Add Tire")
     print("16. Update Tire")
-    print("17. Exit")
-    print("Please select an option (1-17): ", end="")
+    print("17. Add Sensor")
+    print("18. Update Sensor")
+    print("19. Add Tbox")
+    print("20. Update Tbox")
+    print("21. Get Tbox List")
+    print("22. Get Sensor List")
+    print("Please select an option (1-22): ", end="")
 
 if __name__ == "__main__":
     tire_api = SmartTyreAPI(
@@ -131,3 +136,47 @@ if __name__ == "__main__":
         }
         response = tire_api.update_tire(updated_tire)
         print("Update Tire Response:", response)
+    elif choice == "17":
+        # Add sensor
+        new_sensor = {
+            "sensorCode": "A4C1386C7403",
+            "version": "2.5.0",
+        }
+        response = tire_api.add_sensor(new_sensor)
+        print("Add Sensor Response:", response)
+    elif choice == "18":
+        # Update sensor
+        updated_sensor = {
+            "id": "49356",
+            "sensorCode": "A4C1386C7403",
+            "version": "2.5.0",
+            "orgId": "218",
+            "remark": "sensor updated"
+        }
+        response = tire_api.update_sensor(updated_sensor)
+        print("Update Sensor Response:", response)
+    elif choice == "19":
+        # Add Tbox
+        new_tbox = {
+            "tboxCode": "A9C1386C7403",
+        }
+        response = tire_api.add_tbox(new_tbox)
+        print("Add Tbox Response:", response)
+    elif choice == "20":
+        # Update Tbox
+        updated_tbox = {
+            "id": "8756",
+            "tboxCode": "A9C1386C7403",
+            "version": "1.0",
+        }
+        response = tire_api.update_tbox(updated_tbox)
+        print("Update Tbox Response:", response)
+    elif choice == "21":
+        # Get Tbox List
+        tbox_list = tire_api.get_tboxes_list()
+        print("Tbox List:", tbox_list)
+    elif choice == "22":
+        # Get Sensor List
+        sensor_list = tire_api.get_sensor_list()
+        print("Sensor List:", sensor_list)
+
