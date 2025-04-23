@@ -132,6 +132,8 @@ class SmartTyreAPI:
                 - axleTypeId (str): The ID of the axle type
                 - modelId (str): The ID of the vehicle model
                 - orgId (str): The ID of the organization
+                - tboxId (str): The ID of the TBox. Optional
+                - vehicleChassisNumber (str): The chassis number of the vehicle. Optional
 
         Example:
             ```python
@@ -178,6 +180,9 @@ class SmartTyreAPI:
                 - axleTypeId (str): The ID of the axle type
                 - modelId (str): The ID of the vehicle model
                 - orgId (str): The ID of the organization
+                - tboxId (str): The ID of the TBox. Optional
+                - vehicleChassisNumber (str): The chassis number of the vehicle. Optional
+
 
         Example:
              ```python
@@ -252,6 +257,12 @@ class SmartTyreAPI:
                 - tyreSizeId (str): The ID of the tire size
                 - tyrePattern (str): The pattern of the tire
                 - initialTreadDepth (str): The initial tread depth of the tire
+                - orgId (str): The ID of the organization. Optional
+                - sensorId (str): The ID of the sensor. Optional
+                - totalDistance (str): The total distance of the tire (km). Optional
+                - loadIndex (str): The load index of the tire. Optional
+                - speedLevel (str): The speed level of the tire. Optional
+                - newTreadDepth (str): The new tread depth of the tire. Optional
 
         Example:
             ```python
@@ -292,6 +303,12 @@ class SmartTyreAPI:
                 - tyreSizeId (str): The ID of the tire size
                 - tyrePattern (str): The pattern of the tire
                 - initialTreadDepth (str): The initial tread depth of the tire
+                - orgId (str): The ID of the organization. Optional
+                - sensorId (str): The ID of the sensor. Optional
+                - totalDistance (str): The total distance of the tire (km). Optional
+                - loadIndex (str): The load index of the tire. Optional
+                - speedLevel (str): The speed level of the tire. Optional
+                - newTreadDepth (str): The new tread depth of the tire. Optional
         Example:
             ```python
             updated_tire = {
@@ -419,6 +436,17 @@ class SmartTyreAPI:
         Adds a new TBox to the Smart Tyre system.
         Args:
             tbox_info (dict): The information of the TBox to be added.
+
+                The dictionary should contain:
+                - tboxCode (str): The identification code of the TBox. Must be 12 characters from 0-9 and A-F.
+                - version (str): The version of the TBox. Optional
+                - orgId (str): The ID of the organization. Optional
+                - ioTCardNumber (str): The IoT card number of the TBox. Optional
+                - carrier (str): The carrier of the TBox. Optional
+                - remark (str): Additional remarks about the TBox. Optional
+
+        Note: The tbox_info dictionary must follow the API requirements.
+        Check the API documentation for optional fields.
         Returns:
             The response from the API if available or None if the request fails.
         """
@@ -437,6 +465,18 @@ class SmartTyreAPI:
         Updates an existing TBox in the Smart Tyre system.
         Args:
             tbox_info (dict): The information of the TBox to be updated.
+
+                The dictionary should contain:
+                - id (str): The ID of the TBox to be updated.
+                - tboxCode (str): The identification code of the Tbox to be updated. Cannot be changed.
+                - version (str): The version of the TBox. Optional
+                - orgId (str): The ID of the organization. Optional
+                - ioTCardNumber (str): The IoT card number of the TBox. Optional
+                - carrier (str): The carrier of the TBox. Optional
+                - remark (str): Additional remarks about the TBox. Optional
+
+        Note: The tbox_info dictionary must follow the API requirements.
+        Check the API documentation for optional fields.
 
         Returns:
             The response from the API if available or None if the request fails.
@@ -483,6 +523,15 @@ class SmartTyreAPI:
         Adds a new sensor to the Smart Tyre system.
         Args:
             sensor_info (dict): The information of the sensor to be added.
+
+                The dictionary should contain:
+                - sensorCode (str): The identification code of the sensor. Must be 12 characters from 0-9 and A-F.
+                - version (str): The version of the sensor. Optional
+                - orgId (str): The ID of the organization. Optional
+                - remark (str): Additional remarks about the sensor. Optional
+
+        Note: The sensor_info dictionary must follow the API requirements.
+        Check the API documentation for optional fields.
         Returns:
             The response from the API if available or None if the request fails.
         """
@@ -501,6 +550,16 @@ class SmartTyreAPI:
         Updates an existing sensor in the Smart Tyre system.
         Args:
             sensor_info (dict): The information of the sensor to be updated.
+
+                The dictionary should contain:
+                - id (str): The ID of the sensor to be updated.
+                - sensorCode (str): The identification code of the sensor. Must be 12 characters from 0-9 and A-F.
+                - version (str): The version of the sensor. Optional
+                - orgId (str): The ID of the organization. Optional
+                - remark (str): Additional remarks about the sensor. Optional
+
+        Note: The sensor_info dictionary must follow the API requirements.
+        Check the API documentation for optional fields.
         Returns:
             The response from the API if available or None if the request fails.
         """
