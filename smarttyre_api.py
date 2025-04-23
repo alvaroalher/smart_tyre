@@ -81,7 +81,7 @@ class SmartTyreAPI:
         if response.status_code == 200 and returns_data:
             return response.json().get("data")
         if response.status_code == 200:
-            return response.json().get("message")
+            return response.json().get("msg")
         return None
 
     def get_access_token(self):
