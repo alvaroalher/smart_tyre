@@ -90,8 +90,8 @@ if __name__ == "__main__":
         "orgId": "218",
     }
 
-    #response = tire_api.add_vehicle(new_vehicle)
-    #print("Add Vehicle Response:", response)
+    response = tire_api.add_vehicle(new_vehicle)
+    print("Add Vehicle Response:", response)
 
     # Update vehicle
     updated_vehicle = {
