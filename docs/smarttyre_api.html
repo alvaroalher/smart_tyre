@@ -522,12 +522,12 @@ This module provides a client for interacting with the SmartTyre API.</p>
 </span><span id="L-380"><a href="#L-380"><span class="linenos">380</span></a>        <span class="p">}</span>
 </span><span id="L-381"><a href="#L-381"><span class="linenos">381</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="L-382"><a href="#L-382"><span class="linenos">382</span></a>
-</span><span id="L-383"><a href="#L-383"><span class="linenos">383</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bind_tire_to_vehicle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">tire_id</span><span class="p">,</span> <span class="n">axle_index</span><span class="p">,</span> <span class="n">wheel_index</span><span class="p">):</span>
+</span><span id="L-383"><a href="#L-383"><span class="linenos">383</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bind_tire_to_vehicle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">tire_code</span><span class="p">,</span> <span class="n">axle_index</span><span class="p">,</span> <span class="n">wheel_index</span><span class="p">):</span>
 </span><span id="L-384"><a href="#L-384"><span class="linenos">384</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-385"><a href="#L-385"><span class="linenos">385</span></a><span class="sd">        Binds a tire to a vehicle in the Smart Tyre system.</span>
 </span><span id="L-386"><a href="#L-386"><span class="linenos">386</span></a><span class="sd">        Args:</span>
 </span><span id="L-387"><a href="#L-387"><span class="linenos">387</span></a><span class="sd">            vehicle_id (str): The ID of the vehicle.</span>
-</span><span id="L-388"><a href="#L-388"><span class="linenos">388</span></a><span class="sd">            tire_id (str): The ID of the tire.</span>
+</span><span id="L-388"><a href="#L-388"><span class="linenos">388</span></a><span class="sd">            tire_code (str): The ID of the tire.</span>
 </span><span id="L-389"><a href="#L-389"><span class="linenos">389</span></a><span class="sd">            axle_index (int): The index of the axle.</span>
 </span><span id="L-390"><a href="#L-390"><span class="linenos">390</span></a><span class="sd">            wheel_index (int): The index of the wheel.</span>
 </span><span id="L-391"><a href="#L-391"><span class="linenos">391</span></a><span class="sd">        Returns:</span>
@@ -537,7 +537,7 @@ This module provides a client for interacting with the SmartTyre API.</p>
 </span><span id="L-395"><a href="#L-395"><span class="linenos">395</span></a>
 </span><span id="L-396"><a href="#L-396"><span class="linenos">396</span></a>        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
 </span><span id="L-397"><a href="#L-397"><span class="linenos">397</span></a>            <span class="s2">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="n">vehicle_id</span><span class="p">,</span>
-</span><span id="L-398"><a href="#L-398"><span class="linenos">398</span></a>            <span class="s2">&quot;tyreId&quot;</span><span class="p">:</span> <span class="n">tire_id</span><span class="p">,</span>
+</span><span id="L-398"><a href="#L-398"><span class="linenos">398</span></a>            <span class="s2">&quot;tyreCode&quot;</span><span class="p">:</span> <span class="n">tire_code</span><span class="p">,</span>
 </span><span id="L-399"><a href="#L-399"><span class="linenos">399</span></a>            <span class="s2">&quot;axleIndex&quot;</span><span class="p">:</span> <span class="n">axle_index</span><span class="p">,</span>
 </span><span id="L-400"><a href="#L-400"><span class="linenos">400</span></a>            <span class="s2">&quot;wheelIndex&quot;</span><span class="p">:</span> <span class="n">wheel_index</span><span class="p">,</span>
 </span><span id="L-401"><a href="#L-401"><span class="linenos">401</span></a>        <span class="p">}</span>
@@ -563,7 +563,7 @@ This module provides a client for interacting with the SmartTyre API.</p>
 </span><span id="L-421"><a href="#L-421"><span class="linenos">421</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/tyre/unbind&quot;</span>
 </span><span id="L-422"><a href="#L-422"><span class="linenos">422</span></a>        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
 </span><span id="L-423"><a href="#L-423"><span class="linenos">423</span></a>            <span class="s2">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="n">vehicle_id</span><span class="p">,</span>
-</span><span id="L-424"><a href="#L-424"><span class="linenos">424</span></a>            <span class="s2">&quot;tyreId&quot;</span><span class="p">:</span> <span class="n">tire_id</span><span class="p">,</span>
+</span><span id="L-424"><a href="#L-424"><span class="linenos">424</span></a>            <span class="s2">&quot;tyreCode&quot;</span><span class="p">:</span> <span class="n">tire_id</span><span class="p">,</span>
 </span><span id="L-425"><a href="#L-425"><span class="linenos">425</span></a>        <span class="p">}</span>
 </span><span id="L-426"><a href="#L-426"><span class="linenos">426</span></a>
 </span><span id="L-427"><a href="#L-427"><span class="linenos">427</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1162,12 +1162,12 @@ This module provides a client for interacting with the SmartTyre API.</p>
 </span><span id="SmartTyreAPI-381"><a href="#SmartTyreAPI-381"><span class="linenos">381</span></a>        <span class="p">}</span>
 </span><span id="SmartTyreAPI-382"><a href="#SmartTyreAPI-382"><span class="linenos">382</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="SmartTyreAPI-383"><a href="#SmartTyreAPI-383"><span class="linenos">383</span></a>
-</span><span id="SmartTyreAPI-384"><a href="#SmartTyreAPI-384"><span class="linenos">384</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bind_tire_to_vehicle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">tire_id</span><span class="p">,</span> <span class="n">axle_index</span><span class="p">,</span> <span class="n">wheel_index</span><span class="p">):</span>
+</span><span id="SmartTyreAPI-384"><a href="#SmartTyreAPI-384"><span class="linenos">384</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bind_tire_to_vehicle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">tire_code</span><span class="p">,</span> <span class="n">axle_index</span><span class="p">,</span> <span class="n">wheel_index</span><span class="p">):</span>
 </span><span id="SmartTyreAPI-385"><a href="#SmartTyreAPI-385"><span class="linenos">385</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="SmartTyreAPI-386"><a href="#SmartTyreAPI-386"><span class="linenos">386</span></a><span class="sd">        Binds a tire to a vehicle in the Smart Tyre system.</span>
 </span><span id="SmartTyreAPI-387"><a href="#SmartTyreAPI-387"><span class="linenos">387</span></a><span class="sd">        Args:</span>
 </span><span id="SmartTyreAPI-388"><a href="#SmartTyreAPI-388"><span class="linenos">388</span></a><span class="sd">            vehicle_id (str): The ID of the vehicle.</span>
-</span><span id="SmartTyreAPI-389"><a href="#SmartTyreAPI-389"><span class="linenos">389</span></a><span class="sd">            tire_id (str): The ID of the tire.</span>
+</span><span id="SmartTyreAPI-389"><a href="#SmartTyreAPI-389"><span class="linenos">389</span></a><span class="sd">            tire_code (str): The ID of the tire.</span>
 </span><span id="SmartTyreAPI-390"><a href="#SmartTyreAPI-390"><span class="linenos">390</span></a><span class="sd">            axle_index (int): The index of the axle.</span>
 </span><span id="SmartTyreAPI-391"><a href="#SmartTyreAPI-391"><span class="linenos">391</span></a><span class="sd">            wheel_index (int): The index of the wheel.</span>
 </span><span id="SmartTyreAPI-392"><a href="#SmartTyreAPI-392"><span class="linenos">392</span></a><span class="sd">        Returns:</span>
@@ -1177,7 +1177,7 @@ This module provides a client for interacting with the SmartTyre API.</p>
 </span><span id="SmartTyreAPI-396"><a href="#SmartTyreAPI-396"><span class="linenos">396</span></a>
 </span><span id="SmartTyreAPI-397"><a href="#SmartTyreAPI-397"><span class="linenos">397</span></a>        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
 </span><span id="SmartTyreAPI-398"><a href="#SmartTyreAPI-398"><span class="linenos">398</span></a>            <span class="s2">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="n">vehicle_id</span><span class="p">,</span>
-</span><span id="SmartTyreAPI-399"><a href="#SmartTyreAPI-399"><span class="linenos">399</span></a>            <span class="s2">&quot;tyreId&quot;</span><span class="p">:</span> <span class="n">tire_id</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-399"><a href="#SmartTyreAPI-399"><span class="linenos">399</span></a>            <span class="s2">&quot;tyreCode&quot;</span><span class="p">:</span> <span class="n">tire_code</span><span class="p">,</span>
 </span><span id="SmartTyreAPI-400"><a href="#SmartTyreAPI-400"><span class="linenos">400</span></a>            <span class="s2">&quot;axleIndex&quot;</span><span class="p">:</span> <span class="n">axle_index</span><span class="p">,</span>
 </span><span id="SmartTyreAPI-401"><a href="#SmartTyreAPI-401"><span class="linenos">401</span></a>            <span class="s2">&quot;wheelIndex&quot;</span><span class="p">:</span> <span class="n">wheel_index</span><span class="p">,</span>
 </span><span id="SmartTyreAPI-402"><a href="#SmartTyreAPI-402"><span class="linenos">402</span></a>        <span class="p">}</span>
@@ -1203,7 +1203,7 @@ This module provides a client for interacting with the SmartTyre API.</p>
 </span><span id="SmartTyreAPI-422"><a href="#SmartTyreAPI-422"><span class="linenos">422</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/tyre/unbind&quot;</span>
 </span><span id="SmartTyreAPI-423"><a href="#SmartTyreAPI-423"><span class="linenos">423</span></a>        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
 </span><span id="SmartTyreAPI-424"><a href="#SmartTyreAPI-424"><span class="linenos">424</span></a>            <span class="s2">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="n">vehicle_id</span><span class="p">,</span>
-</span><span id="SmartTyreAPI-425"><a href="#SmartTyreAPI-425"><span class="linenos">425</span></a>            <span class="s2">&quot;tyreId&quot;</span><span class="p">:</span> <span class="n">tire_id</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-425"><a href="#SmartTyreAPI-425"><span class="linenos">425</span></a>            <span class="s2">&quot;tyreCode&quot;</span><span class="p">:</span> <span class="n">tire_id</span><span class="p">,</span>
 </span><span id="SmartTyreAPI-426"><a href="#SmartTyreAPI-426"><span class="linenos">426</span></a>        <span class="p">}</span>
 </span><span id="SmartTyreAPI-427"><a href="#SmartTyreAPI-427"><span class="linenos">427</span></a>
 </span><span id="SmartTyreAPI-428"><a href="#SmartTyreAPI-428"><span class="linenos">428</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -2238,18 +2238,18 @@ Check the API documentation for optional fields.</p>
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">bind_tire_to_vehicle</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">vehicle_id</span>, </span><span class="param"><span class="n">tire_id</span>, </span><span class="param"><span class="n">axle_index</span>, </span><span class="param"><span class="n">wheel_index</span></span><span class="return-annotation">):</span></span>
+        <span class="name">bind_tire_to_vehicle</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">vehicle_id</span>, </span><span class="param"><span class="n">tire_code</span>, </span><span class="param"><span class="n">axle_index</span>, </span><span class="param"><span class="n">wheel_index</span></span><span class="return-annotation">):</span></span>
 
                 <label class="view-source-button" for="SmartTyreAPI.bind_tire_to_vehicle-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#SmartTyreAPI.bind_tire_to_vehicle"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.bind_tire_to_vehicle-384"><a href="#SmartTyreAPI.bind_tire_to_vehicle-384"><span class="linenos">384</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bind_tire_to_vehicle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">tire_id</span><span class="p">,</span> <span class="n">axle_index</span><span class="p">,</span> <span class="n">wheel_index</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.bind_tire_to_vehicle-384"><a href="#SmartTyreAPI.bind_tire_to_vehicle-384"><span class="linenos">384</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bind_tire_to_vehicle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">tire_code</span><span class="p">,</span> <span class="n">axle_index</span><span class="p">,</span> <span class="n">wheel_index</span><span class="p">):</span>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-385"><a href="#SmartTyreAPI.bind_tire_to_vehicle-385"><span class="linenos">385</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-386"><a href="#SmartTyreAPI.bind_tire_to_vehicle-386"><span class="linenos">386</span></a><span class="sd">        Binds a tire to a vehicle in the Smart Tyre system.</span>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-387"><a href="#SmartTyreAPI.bind_tire_to_vehicle-387"><span class="linenos">387</span></a><span class="sd">        Args:</span>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-388"><a href="#SmartTyreAPI.bind_tire_to_vehicle-388"><span class="linenos">388</span></a><span class="sd">            vehicle_id (str): The ID of the vehicle.</span>
-</span><span id="SmartTyreAPI.bind_tire_to_vehicle-389"><a href="#SmartTyreAPI.bind_tire_to_vehicle-389"><span class="linenos">389</span></a><span class="sd">            tire_id (str): The ID of the tire.</span>
+</span><span id="SmartTyreAPI.bind_tire_to_vehicle-389"><a href="#SmartTyreAPI.bind_tire_to_vehicle-389"><span class="linenos">389</span></a><span class="sd">            tire_code (str): The ID of the tire.</span>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-390"><a href="#SmartTyreAPI.bind_tire_to_vehicle-390"><span class="linenos">390</span></a><span class="sd">            axle_index (int): The index of the axle.</span>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-391"><a href="#SmartTyreAPI.bind_tire_to_vehicle-391"><span class="linenos">391</span></a><span class="sd">            wheel_index (int): The index of the wheel.</span>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-392"><a href="#SmartTyreAPI.bind_tire_to_vehicle-392"><span class="linenos">392</span></a><span class="sd">        Returns:</span>
@@ -2259,7 +2259,7 @@ Check the API documentation for optional fields.</p>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-396"><a href="#SmartTyreAPI.bind_tire_to_vehicle-396"><span class="linenos">396</span></a>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-397"><a href="#SmartTyreAPI.bind_tire_to_vehicle-397"><span class="linenos">397</span></a>        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-398"><a href="#SmartTyreAPI.bind_tire_to_vehicle-398"><span class="linenos">398</span></a>            <span class="s2">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="n">vehicle_id</span><span class="p">,</span>
-</span><span id="SmartTyreAPI.bind_tire_to_vehicle-399"><a href="#SmartTyreAPI.bind_tire_to_vehicle-399"><span class="linenos">399</span></a>            <span class="s2">&quot;tyreId&quot;</span><span class="p">:</span> <span class="n">tire_id</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.bind_tire_to_vehicle-399"><a href="#SmartTyreAPI.bind_tire_to_vehicle-399"><span class="linenos">399</span></a>            <span class="s2">&quot;tyreCode&quot;</span><span class="p">:</span> <span class="n">tire_code</span><span class="p">,</span>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-400"><a href="#SmartTyreAPI.bind_tire_to_vehicle-400"><span class="linenos">400</span></a>            <span class="s2">&quot;axleIndex&quot;</span><span class="p">:</span> <span class="n">axle_index</span><span class="p">,</span>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-401"><a href="#SmartTyreAPI.bind_tire_to_vehicle-401"><span class="linenos">401</span></a>            <span class="s2">&quot;wheelIndex&quot;</span><span class="p">:</span> <span class="n">wheel_index</span><span class="p">,</span>
 </span><span id="SmartTyreAPI.bind_tire_to_vehicle-402"><a href="#SmartTyreAPI.bind_tire_to_vehicle-402"><span class="linenos">402</span></a>        <span class="p">}</span>
@@ -2280,7 +2280,7 @@ Check the API documentation for optional fields.</p>
 
 <ul>
 <li><strong>vehicle_id (str):</strong>  The ID of the vehicle.</li>
-<li><strong>tire_id (str):</strong>  The ID of the tire.</li>
+<li><strong>tire_code (str):</strong>  The ID of the tire.</li>
 <li><strong>axle_index (int):</strong>  The index of the axle.</li>
 <li><strong>wheel_index (int):</strong>  The index of the wheel.</li>
 </ul>
@@ -2318,7 +2318,7 @@ Check the API documentation for optional fields.</p>
 </span><span id="SmartTyreAPI.unbind_tire_from_vehicle-422"><a href="#SmartTyreAPI.unbind_tire_from_vehicle-422"><span class="linenos">422</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/tyre/unbind&quot;</span>
 </span><span id="SmartTyreAPI.unbind_tire_from_vehicle-423"><a href="#SmartTyreAPI.unbind_tire_from_vehicle-423"><span class="linenos">423</span></a>        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
 </span><span id="SmartTyreAPI.unbind_tire_from_vehicle-424"><a href="#SmartTyreAPI.unbind_tire_from_vehicle-424"><span class="linenos">424</span></a>            <span class="s2">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="n">vehicle_id</span><span class="p">,</span>
-</span><span id="SmartTyreAPI.unbind_tire_from_vehicle-425"><a href="#SmartTyreAPI.unbind_tire_from_vehicle-425"><span class="linenos">425</span></a>            <span class="s2">&quot;tyreId&quot;</span><span class="p">:</span> <span class="n">tire_id</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.unbind_tire_from_vehicle-425"><a href="#SmartTyreAPI.unbind_tire_from_vehicle-425"><span class="linenos">425</span></a>            <span class="s2">&quot;tyreCode&quot;</span><span class="p">:</span> <span class="n">tire_id</span><span class="p">,</span>
 </span><span id="SmartTyreAPI.unbind_tire_from_vehicle-426"><a href="#SmartTyreAPI.unbind_tire_from_vehicle-426"><span class="linenos">426</span></a>        <span class="p">}</span>
 </span><span id="SmartTyreAPI.unbind_tire_from_vehicle-427"><a href="#SmartTyreAPI.unbind_tire_from_vehicle-427"><span class="linenos">427</span></a>
 </span><span id="SmartTyreAPI.unbind_tire_from_vehicle-428"><a href="#SmartTyreAPI.unbind_tire_from_vehicle-428"><span class="linenos">428</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
