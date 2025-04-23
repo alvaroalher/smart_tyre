@@ -132,6 +132,7 @@ class SmartTyreAPI:
         return self._new_post_request(
             endpoint=endpoint,
             body=body_str,
+            returns_data=False,
         )
 
     def update_vehicle(self, vehicle_info):
