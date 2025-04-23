@@ -12,6 +12,27 @@ CLIENT_ID=os.getenv("CLIENT_ID")
 CLIENT_SECRET=os.getenv("CLIENT_SECRET")
 SIGN_KEY=os.getenv("SIGN_KEY")
 
+def menu():
+    """Display the menu options."""
+    print("1. Get Access Token")
+    print("2. Get Vehicle List")
+    print("3. Get Vehicle Info")
+    print("4. Get Tire List")
+    print("5. Get Tires Info by Vehicle")
+    print("6. Get Tire Info")
+    print("7. Get Sensor Info")
+    print("8. Get Tbox Info")
+    print("9. Get Tire Brands")
+    print("10. Get Tire Sizes")
+    print("11. Get Vehicle Models")
+    print("12. Get Axle Types")
+    print("13. Add Vehicle")
+    print("14. Update Vehicle")
+    print("15. Add Tire")
+    print("16. Update Tire")
+    print("17. Exit")
+    print("Please select an option (1-17): ", end="")
+
 if __name__ == "__main__":
     tire_api = SmartTyreAPI(
         base_url="https://www.dajintruck.com",
@@ -20,92 +41,93 @@ if __name__ == "__main__":
         sign_key=SIGN_KEY,
     )
 
-    # Example usage
 
-    # Get access token
-    access_token = tire_api.get_access_token()
-    print("Access Token:", access_token)
-
-    # Get vehicle list, tire list, sensor list, and tbox list
-    vehicle_list = tire_api.get_vehicle_list()
-    print("Vehicle List:", vehicle_list)
-
-    tire_list = tire_api.get_tire_list()
-    print("Tire List:", tire_list)
-
-    sensor_list = tire_api.get_sensor_list()
-    print("Sensor List:", sensor_list)
-
-    tbox_list = tire_api.get_tboxes_list()
-    print("Tbox List:", tbox_list)
-
-    # Get vehicle info, tire info, and tires info by vehicle
-    # Replace with actual vehicle and tire IDs from your data
-    VEHICLE_ID = 7543
-    vehicle_info = tire_api.get_vehicle_info(vehicle_id=VEHICLE_ID)
-    print("Vehicle Info:", vehicle_info)
-
-    tires_info = tire_api.get_tires_info_by_vehicle(vehicle_id=VEHICLE_ID)
-    print("Tires Info by Vehicle:", tires_info)
-
-    TIRE_ID = 47048
-    tire_info = tire_api.get_tire_info(tire_id=TIRE_ID)
-    print("Tire Info:", tire_info)
-
-    # Get sensor info and tbox info
-    # Replace with actual sensor and tbox IDs from your data
-    SENSOR_ID = 48899
-    sensor_info = tire_api.get_sensor_info(sensor_id=SENSOR_ID)
-    print("Sensor Info:", sensor_info)
-
-    TBOX_ID = 8694
-    tbox_info = tire_api.get_tbox_info(tbox_id=TBOX_ID)
-    print("Tbox Info:", tbox_info)
-
-    # Get tire brands
-    tire_brands = tire_api.get_tire_brands()
-    print("Tire Brands:", tire_brands)
-
-    # Get tire sizes
-    tire_sizes = tire_api.get_tire_sizes()
-    print("Tire Sizes:", tire_sizes)
-
-    # Get vehicle models
-    vehicle_models = tire_api.get_vehicle_models()
-    print("Vehicle Models:", vehicle_models)
-
-    # Get axle types
-    axle_types = tire_api.get_axle_types()
-    print("Axle Types:", axle_types)
-
-
-    # Register a new vehicle
-    new_vehicle = {
-        "isTractor": 0,
-        "licensePlateNumber": "ABC123",
-        "emptyWeight": "1000",
-        "fullWeight": "2000",
-        "axleTypeId": "2",
-        "modelId": "31",
-        "orgId": "218",
-    }
-
-    response = tire_api.add_vehicle(new_vehicle)
-    print("Add Vehicle Response:", response)
-
-    # Update vehicle
-    updated_vehicle = {
-        "id": "7609",
-        "isTractor": 0,
-        "licensePlateNumber": "XYZ789",
-        "emptyWeight": "1200",
-        "fullWeight": "2200",
-        "axleTypeId": "2",
-        "modelId": "31",
-        "orgId": "218",
-    }
-
-    response = tire_api.update_vehicle(updated_vehicle)
-    print("Update Vehicle Response:", response)
-
-
+    menu()
+    choice = input("Option: ")
+    if choice == "1": # Get access token
+        access_token = tire_api.get_access_token()
+        print("Access Token:", access_token)
+    elif choice == "2": # Get vehicle list
+        vehicle_list = tire_api.get_vehicle_list()
+        print("Vehicle List:", vehicle_list)
+    elif choice == "3": # Get vehicle info
+        vehicle_id = input("Enter Vehicle ID: ")
+        vehicle_info = tire_api.get_vehicle_info(vehicle_id=vehicle_id)
+        print("Vehicle Info:", vehicle_info)
+    elif choice == "4": # Get tire list
+        tire_list = tire_api.get_tire_list()
+        print("Tire List:", tire_list)
+    elif choice == "5": # Get tires info by vehicle
+        vehicle_id = input("Enter Vehicle ID: ")
+        tires_info = tire_api.get_tires_info_by_vehicle(vehicle_id=vehicle_id)
+        print("Tires Info by Vehicle:", tires_info)
+    elif choice == "6": # Get tire info
+        tire_id = input("Enter Tire ID: ")
+        tire_info = tire_api.get_tire_info(tire_id=tire_id)
+        print("Tire Info:", tire_info)
+    elif choice == "7": # Get sensor info
+        sensor_id = input("Enter Sensor ID: ")
+        sensor_info = tire_api.get_sensor_info(sensor_id=sensor_id)
+        print("Sensor Info:", sensor_info)
+    elif choice == "8": # Get tbox info
+        tbox_id = input("Enter Tbox ID: ")
+        tbox_info = tire_api.get_tbox_info(tbox_id=tbox_id)
+        print("Tbox Info:", tbox_info)
+    elif choice == "9": # Get tire brands
+        tire_brands = tire_api.get_tire_brands()
+        print("Tire Brands:", tire_brands)
+    elif choice == "10": # Get tire sizes
+        tire_sizes = tire_api.get_tire_sizes()
+        print("Tire Sizes:", tire_sizes)
+    elif choice == "11": # Get vehicle models
+        vehicle_models = tire_api.get_vehicle_models()
+        print("Vehicle Models:", vehicle_models)
+    elif choice == "12": # Get axle types
+        axle_types = tire_api.get_axle_types()
+        print("Axle Types:", axle_types)
+    elif choice == "13": # Add vehicle
+        new_vehicle = {
+            "isTractor": 0,
+            "licensePlateNumber": "ABC123",
+            "emptyWeight": "1000",
+            "fullWeight": "2000",
+            "axleTypeId": "2",
+            "modelId": "31",
+            "orgId": "218",
+        }
+        response = tire_api.add_vehicle(new_vehicle)
+        print("Add Vehicle Response:", response)
+    elif choice == "14": # Update vehicle
+        updated_vehicle = {
+            "id": "7609",
+            "isTractor": 0,
+            "licensePlateNumber": "XYZ789",
+            "emptyWeight": "1200",
+            "fullWeight": "2200",
+            "axleTypeId": "2",
+            "modelId": "31",
+            "orgId": "218",
+        }
+        response = tire_api.update_vehicle(updated_vehicle)
+        print("Update Vehicle Response:", response)
+    elif choice == "15": # Add tire
+        new_tire = {
+            "tyreCode": "ABC123",
+            "tyreBrandId": "1",
+            "tyreSizeId": "121",
+            "tyrePattern": "Pattern A",
+            "initialTreadDepth": "10",
+        }
+        response = tire_api.add_tire(new_tire)
+        print("Add Tire Response:", response)
+    elif choice == "16": # Update tire
+        updated_tire = {
+            "id": "47414",
+            "tyreCode": "ABC123",
+            "tyreBrandId": "8",
+            "tyreSizeId": "121",
+            "tyrePattern": "Pattern B",
+            "initialTreadDepth": "12",
+        }
+        response = tire_api.update_tire(updated_tire)
+        print("Update Tire Response:", response)
