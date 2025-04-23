@@ -119,10 +119,12 @@ class SmartTyreAPI:
 
     def add_vehicle(self, vehicle_info):
         """
-        Create a new vehicle in the Smart Tyre system.
+        Creates a new vehicle in the Smart Tyre system.
         Args:
             vehicle_info (dict): The information of the vehicle to be created.
-            The dictionary should contain the following keys:
+
+                The dictionary should contain:
+
                 - isTractor (int): 0 for non-tractor, 1 for tractor, 2 for trailer
                 - licensePlateNumber (str): The license plate number of the vehicle
                 - emptyWeight (str): The empty weight of the vehicle
@@ -130,17 +132,22 @@ class SmartTyreAPI:
                 - axleTypeId (str): The ID of the axle type
                 - modelId (str): The ID of the vehicle model
                 - orgId (str): The ID of the organization
-        Note: The vehicle_info dictionary should be structured according to the API requirements.
+
+        Note: The vehicle_info dictionary must follow the API requirements.
+
         Example:
+            ```python
             new_vehicle = {
                 "isTractor": 0,
                 "licensePlateNumber": "ABC123",
-                "emptyWeight": 1000,
-                "fullWeight": 2000,
+                "emptyWeight": "1000",
+                "fullWeight": "2000",
                 "axleTypeId": "2",
                 "modelId": "31",
-                "orgId": "218",
+                "orgId": "218"
             }
+            ```
+
         Returns:
             The response from the API if available or None if the request fails.
         """
@@ -156,10 +163,12 @@ class SmartTyreAPI:
 
     def update_vehicle(self, vehicle_info):
         """
-        Update an existing vehicle in the Smart Tyre system.
+        Updates an existing vehicle in the Smart Tyre system.
         Args:
             vehicle_info (dict): The information of the vehicle to be updated.
-            The dictionary should contain the following keys:
+
+                The dictionary should contain:
+
                 - id (str): The ID of the vehicle to be updated
                 - isTractor (int): 0 for non-tractor, 1 for tractor, 2 for trailer
                 - licensePlateNumber (str): The license plate number of the vehicle
@@ -168,18 +177,23 @@ class SmartTyreAPI:
                 - axleTypeId (str): The ID of the axle type
                 - modelId (str): The ID of the vehicle model
                 - orgId (str): The ID of the organization
-        Note: The vehicle_info dictionary should be structured according to the API requirements.
+
+        Note: The vehicle_info dictionary must follow the API requirements.
+
         Example:
-        updated_vehicle = {
-            "id": "7609",
-            "isTractor": 0,
-            "licensePlateNumber": "XYZ789",
-            "emptyWeight": "1200",
-            "fullWeight": "2200",
-            "axleTypeId": "2",
-            "modelId": "31",
-            "orgId": "218",
-        }
+             ```python
+            updated_vehicle = {
+                "id": "7609",
+                "isTractor": 0,
+                "licensePlateNumber": "XYZ789",
+                "emptyWeight": "1200",
+                "fullWeight": "2200",
+                "axleTypeId": "2",
+                "modelId": "31",
+                "orgId": "218",
+            }
+            ```
+
         Returns:
             The response from the API if available or None if the request fails.
         """
@@ -227,7 +241,7 @@ class SmartTyreAPI:
 
     def add_tire(self, tire_info):
         """
-        Add a new tire to the Smart Tyre system.
+        Adds a new tire to the Smart Tyre system.
         Args:
             tire_info (dict): The information of the tire to be added.
         Returns:
@@ -245,7 +259,7 @@ class SmartTyreAPI:
 
     def update_tire(self, tire_info):
         """
-        Update an existing tire in the Smart Tyre system.
+        Updates an existing tire in the Smart Tyre system.
         Args:
             tire_info (dict): The information of the tire to be updated.
         Returns:
@@ -282,7 +296,7 @@ class SmartTyreAPI:
         )
 
     def get_tire_list(self):
-        """Obtain the list of tires from the Smart Tyre API.
+        """Obtains the list of tires from the Smart Tyre API.
         Returns:
             The list of tires if available or None if the request fails.
         """
@@ -307,7 +321,7 @@ class SmartTyreAPI:
 
     def bind_tire_to_vehicle(self, vehicle_id, tire_id, axle_index, wheel_index):
         """
-        Bind a tire to a vehicle in the Smart Tyre system.
+        Binds a tire to a vehicle in the Smart Tyre system.
         Args:
             vehicle_id (str): The ID of the vehicle.
             tire_id (str): The ID of the tire.
@@ -335,7 +349,7 @@ class SmartTyreAPI:
 
     def unbind_tire_from_vehicle(self, vehicle_id, tire_id):
         """
-        Unbind a tire from a vehicle in the Smart Tyre system.
+        Unbinds a tire from a vehicle in the Smart Tyre system.
         Args:
             vehicle_id (str): The ID of the vehicle.
             tire_id (str): The ID of the tire.
@@ -358,7 +372,7 @@ class SmartTyreAPI:
 
     def add_tbox(self, tbox_info):
         """
-        Add a new TBox to the Smart Tyre system.
+        Adds a new TBox to the Smart Tyre system.
         Args:
             tbox_info (dict): The information of the TBox to be added.
         Returns:
@@ -422,7 +436,7 @@ class SmartTyreAPI:
 
     def add_sensor(self, sensor_info):
         """
-        Add a new sensor to the Smart Tyre system.
+        Adds a new sensor to the Smart Tyre system.
         Args:
             sensor_info (dict): The information of the sensor to be added.
         Returns:
@@ -440,7 +454,7 @@ class SmartTyreAPI:
 
     def update_sensor(self, sensor_info):
         """
-        Update an existing sensor in the Smart Tyre system.
+        Updates an existing sensor in the Smart Tyre system.
         Args:
             sensor_info (dict): The information of the sensor to be updated.
         Returns:
