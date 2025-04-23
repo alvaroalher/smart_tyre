@@ -380,12 +380,12 @@ class SmartTyreAPI:
         }
         return self._new_get_request(endpoint, params=params)
 
-    def bind_tire_to_vehicle(self, vehicle_id, tire_id, axle_index, wheel_index):
+    def bind_tire_to_vehicle(self, vehicle_id, tire_code, axle_index, wheel_index):
         """
         Binds a tire to a vehicle in the Smart Tyre system.
         Args:
             vehicle_id (str): The ID of the vehicle.
-            tire_id (str): The ID of the tire.
+            tire_code (str): The ID of the tire.
             axle_index (int): The index of the axle.
             wheel_index (int): The index of the wheel.
         Returns:
@@ -395,7 +395,7 @@ class SmartTyreAPI:
 
         body = {
             "vehicleId": vehicle_id,
-            "tyreId": tire_id,
+            "tyreCode": tire_code,
             "axleIndex": axle_index,
             "wheelIndex": wheel_index,
         }
@@ -421,7 +421,7 @@ class SmartTyreAPI:
         endpoint = "/smartyre/openapi/vehicle/tyre/unbind"
         body = {
             "vehicleId": vehicle_id,
-            "tyreId": tire_id,
+            "tyreCode": tire_id,
         }
 
         body_str = json.dumps(body, separators=(",", ":"), ensure_ascii=False)
