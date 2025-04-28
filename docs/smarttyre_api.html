@@ -102,6 +102,12 @@
                                 <a class="function" href="#SmartTyreAPI.get_sensor_info">get_sensor_info</a>
                         </li>
                         <li>
+                                <a class="function" href="#SmartTyreAPI.bind_sensor_to_tire">bind_sensor_to_tire</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#SmartTyreAPI.unbind_sensor_from_tire">unbind_sensor_from_tire</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#SmartTyreAPI.get_tire_brands">get_tire_brands</a>
                         </li>
                         <li>
@@ -739,45 +745,106 @@ This module provides a client for interacting with the SmartTyre API.</p>
 </span><span id="L-597"><a href="#L-597"><span class="linenos">597</span></a>        <span class="p">}</span>
 </span><span id="L-598"><a href="#L-598"><span class="linenos">598</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="L-599"><a href="#L-599"><span class="linenos">599</span></a>
-</span><span id="L-600"><a href="#L-600"><span class="linenos">600</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_tire_brands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-600"><a href="#L-600"><span class="linenos">600</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bind_sensor_to_tire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tire_code</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">axle_index</span><span class="p">,</span> <span class="n">wheel_index</span><span class="p">,</span> <span class="n">sensor_code</span><span class="p">):</span>
 </span><span id="L-601"><a href="#L-601"><span class="linenos">601</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-602"><a href="#L-602"><span class="linenos">602</span></a><span class="sd">        Obtains the list of tire brands from the Smart Tyre API.</span>
-</span><span id="L-603"><a href="#L-603"><span class="linenos">603</span></a><span class="sd">        Returns:</span>
-</span><span id="L-604"><a href="#L-604"><span class="linenos">604</span></a><span class="sd">            The list of tire brands if available or None if the request fails.</span>
-</span><span id="L-605"><a href="#L-605"><span class="linenos">605</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-606"><a href="#L-606"><span class="linenos">606</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/brand/all&quot;</span>
-</span><span id="L-607"><a href="#L-607"><span class="linenos">607</span></a>
-</span><span id="L-608"><a href="#L-608"><span class="linenos">608</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
-</span><span id="L-609"><a href="#L-609"><span class="linenos">609</span></a>
-</span><span id="L-610"><a href="#L-610"><span class="linenos">610</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_tire_sizes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-611"><a href="#L-611"><span class="linenos">611</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-612"><a href="#L-612"><span class="linenos">612</span></a><span class="sd">        Obtains the list of tire sizes from the Smart Tyre API.</span>
-</span><span id="L-613"><a href="#L-613"><span class="linenos">613</span></a><span class="sd">        Returns:</span>
-</span><span id="L-614"><a href="#L-614"><span class="linenos">614</span></a><span class="sd">            The list of tire sizes if available or None if the request fails.</span>
-</span><span id="L-615"><a href="#L-615"><span class="linenos">615</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-616"><a href="#L-616"><span class="linenos">616</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/size/all&quot;</span>
-</span><span id="L-617"><a href="#L-617"><span class="linenos">617</span></a>
-</span><span id="L-618"><a href="#L-618"><span class="linenos">618</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
-</span><span id="L-619"><a href="#L-619"><span class="linenos">619</span></a>
-</span><span id="L-620"><a href="#L-620"><span class="linenos">620</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_vehicle_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-621"><a href="#L-621"><span class="linenos">621</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-622"><a href="#L-622"><span class="linenos">622</span></a><span class="sd">        Obtains the list of vehicle models from the Smart Tyre API.</span>
-</span><span id="L-623"><a href="#L-623"><span class="linenos">623</span></a><span class="sd">        Returns:</span>
-</span><span id="L-624"><a href="#L-624"><span class="linenos">624</span></a><span class="sd">            The list of vehicle models if available or None if the request fails.</span>
-</span><span id="L-625"><a href="#L-625"><span class="linenos">625</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-626"><a href="#L-626"><span class="linenos">626</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/model/all&quot;</span>
-</span><span id="L-627"><a href="#L-627"><span class="linenos">627</span></a>
-</span><span id="L-628"><a href="#L-628"><span class="linenos">628</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span><span id="L-602"><a href="#L-602"><span class="linenos">602</span></a><span class="sd">        Binds a sensor to a tire in the Smart Tyre system.</span>
+</span><span id="L-603"><a href="#L-603"><span class="linenos">603</span></a><span class="sd">        Args:</span>
+</span><span id="L-604"><a href="#L-604"><span class="linenos">604</span></a><span class="sd">            tire_code (str): The ID of the tire.</span>
+</span><span id="L-605"><a href="#L-605"><span class="linenos">605</span></a><span class="sd">            vehicle_id (str): The ID of the vehicle.</span>
+</span><span id="L-606"><a href="#L-606"><span class="linenos">606</span></a><span class="sd">            axle_index (int): The index of the axle.</span>
+</span><span id="L-607"><a href="#L-607"><span class="linenos">607</span></a><span class="sd">            wheel_index (int): The index of the wheel.</span>
+</span><span id="L-608"><a href="#L-608"><span class="linenos">608</span></a><span class="sd">            sensor_code (str): The ID of the sensor.</span>
+</span><span id="L-609"><a href="#L-609"><span class="linenos">609</span></a><span class="sd">        Returns:</span>
+</span><span id="L-610"><a href="#L-610"><span class="linenos">610</span></a><span class="sd">            The response from the API if available or None if the request fails.</span>
+</span><span id="L-611"><a href="#L-611"><span class="linenos">611</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-612"><a href="#L-612"><span class="linenos">612</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/sensor/bind&quot;</span>
+</span><span id="L-613"><a href="#L-613"><span class="linenos">613</span></a>
+</span><span id="L-614"><a href="#L-614"><span class="linenos">614</span></a>        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="L-615"><a href="#L-615"><span class="linenos">615</span></a>            <span class="s2">&quot;tyreCode&quot;</span><span class="p">:</span> <span class="n">tire_code</span><span class="p">,</span>
+</span><span id="L-616"><a href="#L-616"><span class="linenos">616</span></a>            <span class="s2">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="n">vehicle_id</span><span class="p">,</span>
+</span><span id="L-617"><a href="#L-617"><span class="linenos">617</span></a>            <span class="s2">&quot;axleIndex&quot;</span><span class="p">:</span> <span class="n">axle_index</span><span class="p">,</span>
+</span><span id="L-618"><a href="#L-618"><span class="linenos">618</span></a>            <span class="s2">&quot;wheelIndex&quot;</span><span class="p">:</span> <span class="n">wheel_index</span><span class="p">,</span>
+</span><span id="L-619"><a href="#L-619"><span class="linenos">619</span></a>            <span class="s2">&quot;sensorCode&quot;</span><span class="p">:</span> <span class="n">sensor_code</span><span class="p">,</span>
+</span><span id="L-620"><a href="#L-620"><span class="linenos">620</span></a>        <span class="p">}</span>
+</span><span id="L-621"><a href="#L-621"><span class="linenos">621</span></a>
+</span><span id="L-622"><a href="#L-622"><span class="linenos">622</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="L-623"><a href="#L-623"><span class="linenos">623</span></a>
+</span><span id="L-624"><a href="#L-624"><span class="linenos">624</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_post_request</span><span class="p">(</span>
+</span><span id="L-625"><a href="#L-625"><span class="linenos">625</span></a>            <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="L-626"><a href="#L-626"><span class="linenos">626</span></a>            <span class="n">body</span><span class="o">=</span><span class="n">body_str</span><span class="p">,</span>
+</span><span id="L-627"><a href="#L-627"><span class="linenos">627</span></a>            <span class="n">returns_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="L-628"><a href="#L-628"><span class="linenos">628</span></a>        <span class="p">)</span>
 </span><span id="L-629"><a href="#L-629"><span class="linenos">629</span></a>
-</span><span id="L-630"><a href="#L-630"><span class="linenos">630</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_axle_types</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-630"><a href="#L-630"><span class="linenos">630</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unbind_sensor_from_tire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tire_code</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">axle_index</span><span class="p">,</span> <span class="n">wheel_index</span><span class="p">,</span> <span class="n">sensor_code</span><span class="p">):</span>
 </span><span id="L-631"><a href="#L-631"><span class="linenos">631</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-632"><a href="#L-632"><span class="linenos">632</span></a><span class="sd">        Obtains the list of axle types from the Smart Tyre API.</span>
-</span><span id="L-633"><a href="#L-633"><span class="linenos">633</span></a><span class="sd">        Returns:</span>
-</span><span id="L-634"><a href="#L-634"><span class="linenos">634</span></a><span class="sd">            The list of axle types if available or None if the request fails.</span>
-</span><span id="L-635"><a href="#L-635"><span class="linenos">635</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-636"><a href="#L-636"><span class="linenos">636</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/axle/all&quot;</span>
-</span><span id="L-637"><a href="#L-637"><span class="linenos">637</span></a>
-</span><span id="L-638"><a href="#L-638"><span class="linenos">638</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span><span id="L-632"><a href="#L-632"><span class="linenos">632</span></a><span class="sd">        Unbinds a sensor from a tire in the Smart Tyre system.</span>
+</span><span id="L-633"><a href="#L-633"><span class="linenos">633</span></a><span class="sd">        Args:</span>
+</span><span id="L-634"><a href="#L-634"><span class="linenos">634</span></a><span class="sd">            tire_code (str): The ID of the tire.</span>
+</span><span id="L-635"><a href="#L-635"><span class="linenos">635</span></a><span class="sd">            vehicle_id (str): The ID of the vehicle.</span>
+</span><span id="L-636"><a href="#L-636"><span class="linenos">636</span></a><span class="sd">            axle_index (int): The index of the axle.</span>
+</span><span id="L-637"><a href="#L-637"><span class="linenos">637</span></a><span class="sd">            wheel_index (int): The index of the wheel.</span>
+</span><span id="L-638"><a href="#L-638"><span class="linenos">638</span></a><span class="sd">            sensor_code (str): The ID of the sensor.</span>
+</span><span id="L-639"><a href="#L-639"><span class="linenos">639</span></a><span class="sd">        Returns:</span>
+</span><span id="L-640"><a href="#L-640"><span class="linenos">640</span></a><span class="sd">            The response from the API if available or None if the request fails.</span>
+</span><span id="L-641"><a href="#L-641"><span class="linenos">641</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-642"><a href="#L-642"><span class="linenos">642</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/sensor/unbind&quot;</span>
+</span><span id="L-643"><a href="#L-643"><span class="linenos">643</span></a>
+</span><span id="L-644"><a href="#L-644"><span class="linenos">644</span></a>        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="L-645"><a href="#L-645"><span class="linenos">645</span></a>            <span class="s2">&quot;tyreCode&quot;</span><span class="p">:</span> <span class="n">tire_code</span><span class="p">,</span>
+</span><span id="L-646"><a href="#L-646"><span class="linenos">646</span></a>            <span class="s2">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="n">vehicle_id</span><span class="p">,</span>
+</span><span id="L-647"><a href="#L-647"><span class="linenos">647</span></a>            <span class="s2">&quot;axleIndex&quot;</span><span class="p">:</span> <span class="n">axle_index</span><span class="p">,</span>
+</span><span id="L-648"><a href="#L-648"><span class="linenos">648</span></a>            <span class="s2">&quot;wheelIndex&quot;</span><span class="p">:</span> <span class="n">wheel_index</span><span class="p">,</span>
+</span><span id="L-649"><a href="#L-649"><span class="linenos">649</span></a>            <span class="s2">&quot;sensorCode&quot;</span><span class="p">:</span> <span class="n">sensor_code</span><span class="p">,</span>
+</span><span id="L-650"><a href="#L-650"><span class="linenos">650</span></a>        <span class="p">}</span>
+</span><span id="L-651"><a href="#L-651"><span class="linenos">651</span></a>
+</span><span id="L-652"><a href="#L-652"><span class="linenos">652</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="L-653"><a href="#L-653"><span class="linenos">653</span></a>
+</span><span id="L-654"><a href="#L-654"><span class="linenos">654</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_post_request</span><span class="p">(</span>
+</span><span id="L-655"><a href="#L-655"><span class="linenos">655</span></a>            <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="L-656"><a href="#L-656"><span class="linenos">656</span></a>            <span class="n">body</span><span class="o">=</span><span class="n">body_str</span><span class="p">,</span>
+</span><span id="L-657"><a href="#L-657"><span class="linenos">657</span></a>            <span class="n">returns_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="L-658"><a href="#L-658"><span class="linenos">658</span></a>        <span class="p">)</span>
+</span><span id="L-659"><a href="#L-659"><span class="linenos">659</span></a>
+</span><span id="L-660"><a href="#L-660"><span class="linenos">660</span></a>    <span class="c1"># Reference Data Management</span>
+</span><span id="L-661"><a href="#L-661"><span class="linenos">661</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_tire_brands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-662"><a href="#L-662"><span class="linenos">662</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-663"><a href="#L-663"><span class="linenos">663</span></a><span class="sd">        Obtains the list of tire brands from the Smart Tyre API.</span>
+</span><span id="L-664"><a href="#L-664"><span class="linenos">664</span></a><span class="sd">        Returns:</span>
+</span><span id="L-665"><a href="#L-665"><span class="linenos">665</span></a><span class="sd">            The list of tire brands if available or None if the request fails.</span>
+</span><span id="L-666"><a href="#L-666"><span class="linenos">666</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-667"><a href="#L-667"><span class="linenos">667</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/brand/all&quot;</span>
+</span><span id="L-668"><a href="#L-668"><span class="linenos">668</span></a>
+</span><span id="L-669"><a href="#L-669"><span class="linenos">669</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span><span id="L-670"><a href="#L-670"><span class="linenos">670</span></a>
+</span><span id="L-671"><a href="#L-671"><span class="linenos">671</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_tire_sizes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-672"><a href="#L-672"><span class="linenos">672</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-673"><a href="#L-673"><span class="linenos">673</span></a><span class="sd">        Obtains the list of tire sizes from the Smart Tyre API.</span>
+</span><span id="L-674"><a href="#L-674"><span class="linenos">674</span></a><span class="sd">        Returns:</span>
+</span><span id="L-675"><a href="#L-675"><span class="linenos">675</span></a><span class="sd">            The list of tire sizes if available or None if the request fails.</span>
+</span><span id="L-676"><a href="#L-676"><span class="linenos">676</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-677"><a href="#L-677"><span class="linenos">677</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/size/all&quot;</span>
+</span><span id="L-678"><a href="#L-678"><span class="linenos">678</span></a>
+</span><span id="L-679"><a href="#L-679"><span class="linenos">679</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span><span id="L-680"><a href="#L-680"><span class="linenos">680</span></a>
+</span><span id="L-681"><a href="#L-681"><span class="linenos">681</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_vehicle_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-682"><a href="#L-682"><span class="linenos">682</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-683"><a href="#L-683"><span class="linenos">683</span></a><span class="sd">        Obtains the list of vehicle models from the Smart Tyre API.</span>
+</span><span id="L-684"><a href="#L-684"><span class="linenos">684</span></a><span class="sd">        Returns:</span>
+</span><span id="L-685"><a href="#L-685"><span class="linenos">685</span></a><span class="sd">            The list of vehicle models if available or None if the request fails.</span>
+</span><span id="L-686"><a href="#L-686"><span class="linenos">686</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-687"><a href="#L-687"><span class="linenos">687</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/model/all&quot;</span>
+</span><span id="L-688"><a href="#L-688"><span class="linenos">688</span></a>
+</span><span id="L-689"><a href="#L-689"><span class="linenos">689</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span><span id="L-690"><a href="#L-690"><span class="linenos">690</span></a>
+</span><span id="L-691"><a href="#L-691"><span class="linenos">691</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_axle_types</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-692"><a href="#L-692"><span class="linenos">692</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-693"><a href="#L-693"><span class="linenos">693</span></a><span class="sd">        Obtains the list of axle types from the Smart Tyre API.</span>
+</span><span id="L-694"><a href="#L-694"><span class="linenos">694</span></a><span class="sd">        Returns:</span>
+</span><span id="L-695"><a href="#L-695"><span class="linenos">695</span></a><span class="sd">            The list of axle types if available or None if the request fails.</span>
+</span><span id="L-696"><a href="#L-696"><span class="linenos">696</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-697"><a href="#L-697"><span class="linenos">697</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/axle/all&quot;</span>
+</span><span id="L-698"><a href="#L-698"><span class="linenos">698</span></a>
+</span><span id="L-699"><a href="#L-699"><span class="linenos">699</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
 </span></pre></div>
 
 
@@ -1379,45 +1446,106 @@ This module provides a client for interacting with the SmartTyre API.</p>
 </span><span id="SmartTyreAPI-598"><a href="#SmartTyreAPI-598"><span class="linenos">598</span></a>        <span class="p">}</span>
 </span><span id="SmartTyreAPI-599"><a href="#SmartTyreAPI-599"><span class="linenos">599</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="SmartTyreAPI-600"><a href="#SmartTyreAPI-600"><span class="linenos">600</span></a>
-</span><span id="SmartTyreAPI-601"><a href="#SmartTyreAPI-601"><span class="linenos">601</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_tire_brands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="SmartTyreAPI-601"><a href="#SmartTyreAPI-601"><span class="linenos">601</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bind_sensor_to_tire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tire_code</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">axle_index</span><span class="p">,</span> <span class="n">wheel_index</span><span class="p">,</span> <span class="n">sensor_code</span><span class="p">):</span>
 </span><span id="SmartTyreAPI-602"><a href="#SmartTyreAPI-602"><span class="linenos">602</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI-603"><a href="#SmartTyreAPI-603"><span class="linenos">603</span></a><span class="sd">        Obtains the list of tire brands from the Smart Tyre API.</span>
-</span><span id="SmartTyreAPI-604"><a href="#SmartTyreAPI-604"><span class="linenos">604</span></a><span class="sd">        Returns:</span>
-</span><span id="SmartTyreAPI-605"><a href="#SmartTyreAPI-605"><span class="linenos">605</span></a><span class="sd">            The list of tire brands if available or None if the request fails.</span>
-</span><span id="SmartTyreAPI-606"><a href="#SmartTyreAPI-606"><span class="linenos">606</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI-607"><a href="#SmartTyreAPI-607"><span class="linenos">607</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/brand/all&quot;</span>
-</span><span id="SmartTyreAPI-608"><a href="#SmartTyreAPI-608"><span class="linenos">608</span></a>
-</span><span id="SmartTyreAPI-609"><a href="#SmartTyreAPI-609"><span class="linenos">609</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
-</span><span id="SmartTyreAPI-610"><a href="#SmartTyreAPI-610"><span class="linenos">610</span></a>
-</span><span id="SmartTyreAPI-611"><a href="#SmartTyreAPI-611"><span class="linenos">611</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_tire_sizes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="SmartTyreAPI-612"><a href="#SmartTyreAPI-612"><span class="linenos">612</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI-613"><a href="#SmartTyreAPI-613"><span class="linenos">613</span></a><span class="sd">        Obtains the list of tire sizes from the Smart Tyre API.</span>
-</span><span id="SmartTyreAPI-614"><a href="#SmartTyreAPI-614"><span class="linenos">614</span></a><span class="sd">        Returns:</span>
-</span><span id="SmartTyreAPI-615"><a href="#SmartTyreAPI-615"><span class="linenos">615</span></a><span class="sd">            The list of tire sizes if available or None if the request fails.</span>
-</span><span id="SmartTyreAPI-616"><a href="#SmartTyreAPI-616"><span class="linenos">616</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI-617"><a href="#SmartTyreAPI-617"><span class="linenos">617</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/size/all&quot;</span>
-</span><span id="SmartTyreAPI-618"><a href="#SmartTyreAPI-618"><span class="linenos">618</span></a>
-</span><span id="SmartTyreAPI-619"><a href="#SmartTyreAPI-619"><span class="linenos">619</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
-</span><span id="SmartTyreAPI-620"><a href="#SmartTyreAPI-620"><span class="linenos">620</span></a>
-</span><span id="SmartTyreAPI-621"><a href="#SmartTyreAPI-621"><span class="linenos">621</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_vehicle_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="SmartTyreAPI-622"><a href="#SmartTyreAPI-622"><span class="linenos">622</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI-623"><a href="#SmartTyreAPI-623"><span class="linenos">623</span></a><span class="sd">        Obtains the list of vehicle models from the Smart Tyre API.</span>
-</span><span id="SmartTyreAPI-624"><a href="#SmartTyreAPI-624"><span class="linenos">624</span></a><span class="sd">        Returns:</span>
-</span><span id="SmartTyreAPI-625"><a href="#SmartTyreAPI-625"><span class="linenos">625</span></a><span class="sd">            The list of vehicle models if available or None if the request fails.</span>
-</span><span id="SmartTyreAPI-626"><a href="#SmartTyreAPI-626"><span class="linenos">626</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI-627"><a href="#SmartTyreAPI-627"><span class="linenos">627</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/model/all&quot;</span>
-</span><span id="SmartTyreAPI-628"><a href="#SmartTyreAPI-628"><span class="linenos">628</span></a>
-</span><span id="SmartTyreAPI-629"><a href="#SmartTyreAPI-629"><span class="linenos">629</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span><span id="SmartTyreAPI-603"><a href="#SmartTyreAPI-603"><span class="linenos">603</span></a><span class="sd">        Binds a sensor to a tire in the Smart Tyre system.</span>
+</span><span id="SmartTyreAPI-604"><a href="#SmartTyreAPI-604"><span class="linenos">604</span></a><span class="sd">        Args:</span>
+</span><span id="SmartTyreAPI-605"><a href="#SmartTyreAPI-605"><span class="linenos">605</span></a><span class="sd">            tire_code (str): The ID of the tire.</span>
+</span><span id="SmartTyreAPI-606"><a href="#SmartTyreAPI-606"><span class="linenos">606</span></a><span class="sd">            vehicle_id (str): The ID of the vehicle.</span>
+</span><span id="SmartTyreAPI-607"><a href="#SmartTyreAPI-607"><span class="linenos">607</span></a><span class="sd">            axle_index (int): The index of the axle.</span>
+</span><span id="SmartTyreAPI-608"><a href="#SmartTyreAPI-608"><span class="linenos">608</span></a><span class="sd">            wheel_index (int): The index of the wheel.</span>
+</span><span id="SmartTyreAPI-609"><a href="#SmartTyreAPI-609"><span class="linenos">609</span></a><span class="sd">            sensor_code (str): The ID of the sensor.</span>
+</span><span id="SmartTyreAPI-610"><a href="#SmartTyreAPI-610"><span class="linenos">610</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI-611"><a href="#SmartTyreAPI-611"><span class="linenos">611</span></a><span class="sd">            The response from the API if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI-612"><a href="#SmartTyreAPI-612"><span class="linenos">612</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-613"><a href="#SmartTyreAPI-613"><span class="linenos">613</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/sensor/bind&quot;</span>
+</span><span id="SmartTyreAPI-614"><a href="#SmartTyreAPI-614"><span class="linenos">614</span></a>
+</span><span id="SmartTyreAPI-615"><a href="#SmartTyreAPI-615"><span class="linenos">615</span></a>        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="SmartTyreAPI-616"><a href="#SmartTyreAPI-616"><span class="linenos">616</span></a>            <span class="s2">&quot;tyreCode&quot;</span><span class="p">:</span> <span class="n">tire_code</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-617"><a href="#SmartTyreAPI-617"><span class="linenos">617</span></a>            <span class="s2">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="n">vehicle_id</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-618"><a href="#SmartTyreAPI-618"><span class="linenos">618</span></a>            <span class="s2">&quot;axleIndex&quot;</span><span class="p">:</span> <span class="n">axle_index</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-619"><a href="#SmartTyreAPI-619"><span class="linenos">619</span></a>            <span class="s2">&quot;wheelIndex&quot;</span><span class="p">:</span> <span class="n">wheel_index</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-620"><a href="#SmartTyreAPI-620"><span class="linenos">620</span></a>            <span class="s2">&quot;sensorCode&quot;</span><span class="p">:</span> <span class="n">sensor_code</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-621"><a href="#SmartTyreAPI-621"><span class="linenos">621</span></a>        <span class="p">}</span>
+</span><span id="SmartTyreAPI-622"><a href="#SmartTyreAPI-622"><span class="linenos">622</span></a>
+</span><span id="SmartTyreAPI-623"><a href="#SmartTyreAPI-623"><span class="linenos">623</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="SmartTyreAPI-624"><a href="#SmartTyreAPI-624"><span class="linenos">624</span></a>
+</span><span id="SmartTyreAPI-625"><a href="#SmartTyreAPI-625"><span class="linenos">625</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_post_request</span><span class="p">(</span>
+</span><span id="SmartTyreAPI-626"><a href="#SmartTyreAPI-626"><span class="linenos">626</span></a>            <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-627"><a href="#SmartTyreAPI-627"><span class="linenos">627</span></a>            <span class="n">body</span><span class="o">=</span><span class="n">body_str</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-628"><a href="#SmartTyreAPI-628"><span class="linenos">628</span></a>            <span class="n">returns_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-629"><a href="#SmartTyreAPI-629"><span class="linenos">629</span></a>        <span class="p">)</span>
 </span><span id="SmartTyreAPI-630"><a href="#SmartTyreAPI-630"><span class="linenos">630</span></a>
-</span><span id="SmartTyreAPI-631"><a href="#SmartTyreAPI-631"><span class="linenos">631</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_axle_types</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="SmartTyreAPI-631"><a href="#SmartTyreAPI-631"><span class="linenos">631</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unbind_sensor_from_tire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tire_code</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">axle_index</span><span class="p">,</span> <span class="n">wheel_index</span><span class="p">,</span> <span class="n">sensor_code</span><span class="p">):</span>
 </span><span id="SmartTyreAPI-632"><a href="#SmartTyreAPI-632"><span class="linenos">632</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI-633"><a href="#SmartTyreAPI-633"><span class="linenos">633</span></a><span class="sd">        Obtains the list of axle types from the Smart Tyre API.</span>
-</span><span id="SmartTyreAPI-634"><a href="#SmartTyreAPI-634"><span class="linenos">634</span></a><span class="sd">        Returns:</span>
-</span><span id="SmartTyreAPI-635"><a href="#SmartTyreAPI-635"><span class="linenos">635</span></a><span class="sd">            The list of axle types if available or None if the request fails.</span>
-</span><span id="SmartTyreAPI-636"><a href="#SmartTyreAPI-636"><span class="linenos">636</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI-637"><a href="#SmartTyreAPI-637"><span class="linenos">637</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/axle/all&quot;</span>
-</span><span id="SmartTyreAPI-638"><a href="#SmartTyreAPI-638"><span class="linenos">638</span></a>
-</span><span id="SmartTyreAPI-639"><a href="#SmartTyreAPI-639"><span class="linenos">639</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span><span id="SmartTyreAPI-633"><a href="#SmartTyreAPI-633"><span class="linenos">633</span></a><span class="sd">        Unbinds a sensor from a tire in the Smart Tyre system.</span>
+</span><span id="SmartTyreAPI-634"><a href="#SmartTyreAPI-634"><span class="linenos">634</span></a><span class="sd">        Args:</span>
+</span><span id="SmartTyreAPI-635"><a href="#SmartTyreAPI-635"><span class="linenos">635</span></a><span class="sd">            tire_code (str): The ID of the tire.</span>
+</span><span id="SmartTyreAPI-636"><a href="#SmartTyreAPI-636"><span class="linenos">636</span></a><span class="sd">            vehicle_id (str): The ID of the vehicle.</span>
+</span><span id="SmartTyreAPI-637"><a href="#SmartTyreAPI-637"><span class="linenos">637</span></a><span class="sd">            axle_index (int): The index of the axle.</span>
+</span><span id="SmartTyreAPI-638"><a href="#SmartTyreAPI-638"><span class="linenos">638</span></a><span class="sd">            wheel_index (int): The index of the wheel.</span>
+</span><span id="SmartTyreAPI-639"><a href="#SmartTyreAPI-639"><span class="linenos">639</span></a><span class="sd">            sensor_code (str): The ID of the sensor.</span>
+</span><span id="SmartTyreAPI-640"><a href="#SmartTyreAPI-640"><span class="linenos">640</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI-641"><a href="#SmartTyreAPI-641"><span class="linenos">641</span></a><span class="sd">            The response from the API if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI-642"><a href="#SmartTyreAPI-642"><span class="linenos">642</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-643"><a href="#SmartTyreAPI-643"><span class="linenos">643</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/sensor/unbind&quot;</span>
+</span><span id="SmartTyreAPI-644"><a href="#SmartTyreAPI-644"><span class="linenos">644</span></a>
+</span><span id="SmartTyreAPI-645"><a href="#SmartTyreAPI-645"><span class="linenos">645</span></a>        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="SmartTyreAPI-646"><a href="#SmartTyreAPI-646"><span class="linenos">646</span></a>            <span class="s2">&quot;tyreCode&quot;</span><span class="p">:</span> <span class="n">tire_code</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-647"><a href="#SmartTyreAPI-647"><span class="linenos">647</span></a>            <span class="s2">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="n">vehicle_id</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-648"><a href="#SmartTyreAPI-648"><span class="linenos">648</span></a>            <span class="s2">&quot;axleIndex&quot;</span><span class="p">:</span> <span class="n">axle_index</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-649"><a href="#SmartTyreAPI-649"><span class="linenos">649</span></a>            <span class="s2">&quot;wheelIndex&quot;</span><span class="p">:</span> <span class="n">wheel_index</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-650"><a href="#SmartTyreAPI-650"><span class="linenos">650</span></a>            <span class="s2">&quot;sensorCode&quot;</span><span class="p">:</span> <span class="n">sensor_code</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-651"><a href="#SmartTyreAPI-651"><span class="linenos">651</span></a>        <span class="p">}</span>
+</span><span id="SmartTyreAPI-652"><a href="#SmartTyreAPI-652"><span class="linenos">652</span></a>
+</span><span id="SmartTyreAPI-653"><a href="#SmartTyreAPI-653"><span class="linenos">653</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="SmartTyreAPI-654"><a href="#SmartTyreAPI-654"><span class="linenos">654</span></a>
+</span><span id="SmartTyreAPI-655"><a href="#SmartTyreAPI-655"><span class="linenos">655</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_post_request</span><span class="p">(</span>
+</span><span id="SmartTyreAPI-656"><a href="#SmartTyreAPI-656"><span class="linenos">656</span></a>            <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-657"><a href="#SmartTyreAPI-657"><span class="linenos">657</span></a>            <span class="n">body</span><span class="o">=</span><span class="n">body_str</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-658"><a href="#SmartTyreAPI-658"><span class="linenos">658</span></a>            <span class="n">returns_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="SmartTyreAPI-659"><a href="#SmartTyreAPI-659"><span class="linenos">659</span></a>        <span class="p">)</span>
+</span><span id="SmartTyreAPI-660"><a href="#SmartTyreAPI-660"><span class="linenos">660</span></a>
+</span><span id="SmartTyreAPI-661"><a href="#SmartTyreAPI-661"><span class="linenos">661</span></a>    <span class="c1"># Reference Data Management</span>
+</span><span id="SmartTyreAPI-662"><a href="#SmartTyreAPI-662"><span class="linenos">662</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_tire_brands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="SmartTyreAPI-663"><a href="#SmartTyreAPI-663"><span class="linenos">663</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-664"><a href="#SmartTyreAPI-664"><span class="linenos">664</span></a><span class="sd">        Obtains the list of tire brands from the Smart Tyre API.</span>
+</span><span id="SmartTyreAPI-665"><a href="#SmartTyreAPI-665"><span class="linenos">665</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI-666"><a href="#SmartTyreAPI-666"><span class="linenos">666</span></a><span class="sd">            The list of tire brands if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI-667"><a href="#SmartTyreAPI-667"><span class="linenos">667</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-668"><a href="#SmartTyreAPI-668"><span class="linenos">668</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/brand/all&quot;</span>
+</span><span id="SmartTyreAPI-669"><a href="#SmartTyreAPI-669"><span class="linenos">669</span></a>
+</span><span id="SmartTyreAPI-670"><a href="#SmartTyreAPI-670"><span class="linenos">670</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span><span id="SmartTyreAPI-671"><a href="#SmartTyreAPI-671"><span class="linenos">671</span></a>
+</span><span id="SmartTyreAPI-672"><a href="#SmartTyreAPI-672"><span class="linenos">672</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_tire_sizes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="SmartTyreAPI-673"><a href="#SmartTyreAPI-673"><span class="linenos">673</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-674"><a href="#SmartTyreAPI-674"><span class="linenos">674</span></a><span class="sd">        Obtains the list of tire sizes from the Smart Tyre API.</span>
+</span><span id="SmartTyreAPI-675"><a href="#SmartTyreAPI-675"><span class="linenos">675</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI-676"><a href="#SmartTyreAPI-676"><span class="linenos">676</span></a><span class="sd">            The list of tire sizes if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI-677"><a href="#SmartTyreAPI-677"><span class="linenos">677</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-678"><a href="#SmartTyreAPI-678"><span class="linenos">678</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/size/all&quot;</span>
+</span><span id="SmartTyreAPI-679"><a href="#SmartTyreAPI-679"><span class="linenos">679</span></a>
+</span><span id="SmartTyreAPI-680"><a href="#SmartTyreAPI-680"><span class="linenos">680</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span><span id="SmartTyreAPI-681"><a href="#SmartTyreAPI-681"><span class="linenos">681</span></a>
+</span><span id="SmartTyreAPI-682"><a href="#SmartTyreAPI-682"><span class="linenos">682</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_vehicle_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="SmartTyreAPI-683"><a href="#SmartTyreAPI-683"><span class="linenos">683</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-684"><a href="#SmartTyreAPI-684"><span class="linenos">684</span></a><span class="sd">        Obtains the list of vehicle models from the Smart Tyre API.</span>
+</span><span id="SmartTyreAPI-685"><a href="#SmartTyreAPI-685"><span class="linenos">685</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI-686"><a href="#SmartTyreAPI-686"><span class="linenos">686</span></a><span class="sd">            The list of vehicle models if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI-687"><a href="#SmartTyreAPI-687"><span class="linenos">687</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-688"><a href="#SmartTyreAPI-688"><span class="linenos">688</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/model/all&quot;</span>
+</span><span id="SmartTyreAPI-689"><a href="#SmartTyreAPI-689"><span class="linenos">689</span></a>
+</span><span id="SmartTyreAPI-690"><a href="#SmartTyreAPI-690"><span class="linenos">690</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+</span><span id="SmartTyreAPI-691"><a href="#SmartTyreAPI-691"><span class="linenos">691</span></a>
+</span><span id="SmartTyreAPI-692"><a href="#SmartTyreAPI-692"><span class="linenos">692</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_axle_types</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="SmartTyreAPI-693"><a href="#SmartTyreAPI-693"><span class="linenos">693</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-694"><a href="#SmartTyreAPI-694"><span class="linenos">694</span></a><span class="sd">        Obtains the list of axle types from the Smart Tyre API.</span>
+</span><span id="SmartTyreAPI-695"><a href="#SmartTyreAPI-695"><span class="linenos">695</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI-696"><a href="#SmartTyreAPI-696"><span class="linenos">696</span></a><span class="sd">            The list of axle types if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI-697"><a href="#SmartTyreAPI-697"><span class="linenos">697</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI-698"><a href="#SmartTyreAPI-698"><span class="linenos">698</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/axle/all&quot;</span>
+</span><span id="SmartTyreAPI-699"><a href="#SmartTyreAPI-699"><span class="linenos">699</span></a>
+</span><span id="SmartTyreAPI-700"><a href="#SmartTyreAPI-700"><span class="linenos">700</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
 </span></pre></div>
 
 
@@ -2792,6 +2920,134 @@ Check the API documentation for optional fields.</p>
 
 
                             </div>
+                            <div id="SmartTyreAPI.bind_sensor_to_tire" class="classattr">
+                                        <input id="SmartTyreAPI.bind_sensor_to_tire-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">bind_sensor_to_tire</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">tire_code</span>, </span><span class="param"><span class="n">vehicle_id</span>, </span><span class="param"><span class="n">axle_index</span>, </span><span class="param"><span class="n">wheel_index</span>, </span><span class="param"><span class="n">sensor_code</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="SmartTyreAPI.bind_sensor_to_tire-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#SmartTyreAPI.bind_sensor_to_tire"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.bind_sensor_to_tire-601"><a href="#SmartTyreAPI.bind_sensor_to_tire-601"><span class="linenos">601</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bind_sensor_to_tire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tire_code</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">axle_index</span><span class="p">,</span> <span class="n">wheel_index</span><span class="p">,</span> <span class="n">sensor_code</span><span class="p">):</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-602"><a href="#SmartTyreAPI.bind_sensor_to_tire-602"><span class="linenos">602</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-603"><a href="#SmartTyreAPI.bind_sensor_to_tire-603"><span class="linenos">603</span></a><span class="sd">        Binds a sensor to a tire in the Smart Tyre system.</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-604"><a href="#SmartTyreAPI.bind_sensor_to_tire-604"><span class="linenos">604</span></a><span class="sd">        Args:</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-605"><a href="#SmartTyreAPI.bind_sensor_to_tire-605"><span class="linenos">605</span></a><span class="sd">            tire_code (str): The ID of the tire.</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-606"><a href="#SmartTyreAPI.bind_sensor_to_tire-606"><span class="linenos">606</span></a><span class="sd">            vehicle_id (str): The ID of the vehicle.</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-607"><a href="#SmartTyreAPI.bind_sensor_to_tire-607"><span class="linenos">607</span></a><span class="sd">            axle_index (int): The index of the axle.</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-608"><a href="#SmartTyreAPI.bind_sensor_to_tire-608"><span class="linenos">608</span></a><span class="sd">            wheel_index (int): The index of the wheel.</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-609"><a href="#SmartTyreAPI.bind_sensor_to_tire-609"><span class="linenos">609</span></a><span class="sd">            sensor_code (str): The ID of the sensor.</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-610"><a href="#SmartTyreAPI.bind_sensor_to_tire-610"><span class="linenos">610</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-611"><a href="#SmartTyreAPI.bind_sensor_to_tire-611"><span class="linenos">611</span></a><span class="sd">            The response from the API if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-612"><a href="#SmartTyreAPI.bind_sensor_to_tire-612"><span class="linenos">612</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-613"><a href="#SmartTyreAPI.bind_sensor_to_tire-613"><span class="linenos">613</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/sensor/bind&quot;</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-614"><a href="#SmartTyreAPI.bind_sensor_to_tire-614"><span class="linenos">614</span></a>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-615"><a href="#SmartTyreAPI.bind_sensor_to_tire-615"><span class="linenos">615</span></a>        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-616"><a href="#SmartTyreAPI.bind_sensor_to_tire-616"><span class="linenos">616</span></a>            <span class="s2">&quot;tyreCode&quot;</span><span class="p">:</span> <span class="n">tire_code</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-617"><a href="#SmartTyreAPI.bind_sensor_to_tire-617"><span class="linenos">617</span></a>            <span class="s2">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="n">vehicle_id</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-618"><a href="#SmartTyreAPI.bind_sensor_to_tire-618"><span class="linenos">618</span></a>            <span class="s2">&quot;axleIndex&quot;</span><span class="p">:</span> <span class="n">axle_index</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-619"><a href="#SmartTyreAPI.bind_sensor_to_tire-619"><span class="linenos">619</span></a>            <span class="s2">&quot;wheelIndex&quot;</span><span class="p">:</span> <span class="n">wheel_index</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-620"><a href="#SmartTyreAPI.bind_sensor_to_tire-620"><span class="linenos">620</span></a>            <span class="s2">&quot;sensorCode&quot;</span><span class="p">:</span> <span class="n">sensor_code</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-621"><a href="#SmartTyreAPI.bind_sensor_to_tire-621"><span class="linenos">621</span></a>        <span class="p">}</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-622"><a href="#SmartTyreAPI.bind_sensor_to_tire-622"><span class="linenos">622</span></a>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-623"><a href="#SmartTyreAPI.bind_sensor_to_tire-623"><span class="linenos">623</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-624"><a href="#SmartTyreAPI.bind_sensor_to_tire-624"><span class="linenos">624</span></a>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-625"><a href="#SmartTyreAPI.bind_sensor_to_tire-625"><span class="linenos">625</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_post_request</span><span class="p">(</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-626"><a href="#SmartTyreAPI.bind_sensor_to_tire-626"><span class="linenos">626</span></a>            <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-627"><a href="#SmartTyreAPI.bind_sensor_to_tire-627"><span class="linenos">627</span></a>            <span class="n">body</span><span class="o">=</span><span class="n">body_str</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-628"><a href="#SmartTyreAPI.bind_sensor_to_tire-628"><span class="linenos">628</span></a>            <span class="n">returns_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.bind_sensor_to_tire-629"><a href="#SmartTyreAPI.bind_sensor_to_tire-629"><span class="linenos">629</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Binds a sensor to a tire in the Smart Tyre system.</p>
+
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>tire_code (str):</strong>  The ID of the tire.</li>
+<li><strong>vehicle_id (str):</strong>  The ID of the vehicle.</li>
+<li><strong>axle_index (int):</strong>  The index of the axle.</li>
+<li><strong>wheel_index (int):</strong>  The index of the wheel.</li>
+<li><strong>sensor_code (str):</strong>  The ID of the sensor.</li>
+</ul>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>The response from the API if available or None if the request fails.</p>
+</blockquote>
+</div>
+
+
+                            </div>
+                            <div id="SmartTyreAPI.unbind_sensor_from_tire" class="classattr">
+                                        <input id="SmartTyreAPI.unbind_sensor_from_tire-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">unbind_sensor_from_tire</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">tire_code</span>, </span><span class="param"><span class="n">vehicle_id</span>, </span><span class="param"><span class="n">axle_index</span>, </span><span class="param"><span class="n">wheel_index</span>, </span><span class="param"><span class="n">sensor_code</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="SmartTyreAPI.unbind_sensor_from_tire-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#SmartTyreAPI.unbind_sensor_from_tire"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.unbind_sensor_from_tire-631"><a href="#SmartTyreAPI.unbind_sensor_from_tire-631"><span class="linenos">631</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unbind_sensor_from_tire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tire_code</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">axle_index</span><span class="p">,</span> <span class="n">wheel_index</span><span class="p">,</span> <span class="n">sensor_code</span><span class="p">):</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-632"><a href="#SmartTyreAPI.unbind_sensor_from_tire-632"><span class="linenos">632</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-633"><a href="#SmartTyreAPI.unbind_sensor_from_tire-633"><span class="linenos">633</span></a><span class="sd">        Unbinds a sensor from a tire in the Smart Tyre system.</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-634"><a href="#SmartTyreAPI.unbind_sensor_from_tire-634"><span class="linenos">634</span></a><span class="sd">        Args:</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-635"><a href="#SmartTyreAPI.unbind_sensor_from_tire-635"><span class="linenos">635</span></a><span class="sd">            tire_code (str): The ID of the tire.</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-636"><a href="#SmartTyreAPI.unbind_sensor_from_tire-636"><span class="linenos">636</span></a><span class="sd">            vehicle_id (str): The ID of the vehicle.</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-637"><a href="#SmartTyreAPI.unbind_sensor_from_tire-637"><span class="linenos">637</span></a><span class="sd">            axle_index (int): The index of the axle.</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-638"><a href="#SmartTyreAPI.unbind_sensor_from_tire-638"><span class="linenos">638</span></a><span class="sd">            wheel_index (int): The index of the wheel.</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-639"><a href="#SmartTyreAPI.unbind_sensor_from_tire-639"><span class="linenos">639</span></a><span class="sd">            sensor_code (str): The ID of the sensor.</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-640"><a href="#SmartTyreAPI.unbind_sensor_from_tire-640"><span class="linenos">640</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-641"><a href="#SmartTyreAPI.unbind_sensor_from_tire-641"><span class="linenos">641</span></a><span class="sd">            The response from the API if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-642"><a href="#SmartTyreAPI.unbind_sensor_from_tire-642"><span class="linenos">642</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-643"><a href="#SmartTyreAPI.unbind_sensor_from_tire-643"><span class="linenos">643</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/sensor/unbind&quot;</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-644"><a href="#SmartTyreAPI.unbind_sensor_from_tire-644"><span class="linenos">644</span></a>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-645"><a href="#SmartTyreAPI.unbind_sensor_from_tire-645"><span class="linenos">645</span></a>        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-646"><a href="#SmartTyreAPI.unbind_sensor_from_tire-646"><span class="linenos">646</span></a>            <span class="s2">&quot;tyreCode&quot;</span><span class="p">:</span> <span class="n">tire_code</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-647"><a href="#SmartTyreAPI.unbind_sensor_from_tire-647"><span class="linenos">647</span></a>            <span class="s2">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="n">vehicle_id</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-648"><a href="#SmartTyreAPI.unbind_sensor_from_tire-648"><span class="linenos">648</span></a>            <span class="s2">&quot;axleIndex&quot;</span><span class="p">:</span> <span class="n">axle_index</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-649"><a href="#SmartTyreAPI.unbind_sensor_from_tire-649"><span class="linenos">649</span></a>            <span class="s2">&quot;wheelIndex&quot;</span><span class="p">:</span> <span class="n">wheel_index</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-650"><a href="#SmartTyreAPI.unbind_sensor_from_tire-650"><span class="linenos">650</span></a>            <span class="s2">&quot;sensorCode&quot;</span><span class="p">:</span> <span class="n">sensor_code</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-651"><a href="#SmartTyreAPI.unbind_sensor_from_tire-651"><span class="linenos">651</span></a>        <span class="p">}</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-652"><a href="#SmartTyreAPI.unbind_sensor_from_tire-652"><span class="linenos">652</span></a>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-653"><a href="#SmartTyreAPI.unbind_sensor_from_tire-653"><span class="linenos">653</span></a>        <span class="n">body_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-654"><a href="#SmartTyreAPI.unbind_sensor_from_tire-654"><span class="linenos">654</span></a>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-655"><a href="#SmartTyreAPI.unbind_sensor_from_tire-655"><span class="linenos">655</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_post_request</span><span class="p">(</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-656"><a href="#SmartTyreAPI.unbind_sensor_from_tire-656"><span class="linenos">656</span></a>            <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-657"><a href="#SmartTyreAPI.unbind_sensor_from_tire-657"><span class="linenos">657</span></a>            <span class="n">body</span><span class="o">=</span><span class="n">body_str</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-658"><a href="#SmartTyreAPI.unbind_sensor_from_tire-658"><span class="linenos">658</span></a>            <span class="n">returns_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="SmartTyreAPI.unbind_sensor_from_tire-659"><a href="#SmartTyreAPI.unbind_sensor_from_tire-659"><span class="linenos">659</span></a>        <span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Unbinds a sensor from a tire in the Smart Tyre system.</p>
+
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>tire_code (str):</strong>  The ID of the tire.</li>
+<li><strong>vehicle_id (str):</strong>  The ID of the vehicle.</li>
+<li><strong>axle_index (int):</strong>  The index of the axle.</li>
+<li><strong>wheel_index (int):</strong>  The index of the wheel.</li>
+<li><strong>sensor_code (str):</strong>  The ID of the sensor.</li>
+</ul>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>The response from the API if available or None if the request fails.</p>
+</blockquote>
+</div>
+
+
+                            </div>
                             <div id="SmartTyreAPI.get_tire_brands" class="classattr">
                                         <input id="SmartTyreAPI.get_tire_brands-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
@@ -2803,15 +3059,15 @@ Check the API documentation for optional fields.</p>
 
     </div>
     <a class="headerlink" href="#SmartTyreAPI.get_tire_brands"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.get_tire_brands-601"><a href="#SmartTyreAPI.get_tire_brands-601"><span class="linenos">601</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_tire_brands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="SmartTyreAPI.get_tire_brands-602"><a href="#SmartTyreAPI.get_tire_brands-602"><span class="linenos">602</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI.get_tire_brands-603"><a href="#SmartTyreAPI.get_tire_brands-603"><span class="linenos">603</span></a><span class="sd">        Obtains the list of tire brands from the Smart Tyre API.</span>
-</span><span id="SmartTyreAPI.get_tire_brands-604"><a href="#SmartTyreAPI.get_tire_brands-604"><span class="linenos">604</span></a><span class="sd">        Returns:</span>
-</span><span id="SmartTyreAPI.get_tire_brands-605"><a href="#SmartTyreAPI.get_tire_brands-605"><span class="linenos">605</span></a><span class="sd">            The list of tire brands if available or None if the request fails.</span>
-</span><span id="SmartTyreAPI.get_tire_brands-606"><a href="#SmartTyreAPI.get_tire_brands-606"><span class="linenos">606</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI.get_tire_brands-607"><a href="#SmartTyreAPI.get_tire_brands-607"><span class="linenos">607</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/brand/all&quot;</span>
-</span><span id="SmartTyreAPI.get_tire_brands-608"><a href="#SmartTyreAPI.get_tire_brands-608"><span class="linenos">608</span></a>
-</span><span id="SmartTyreAPI.get_tire_brands-609"><a href="#SmartTyreAPI.get_tire_brands-609"><span class="linenos">609</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.get_tire_brands-662"><a href="#SmartTyreAPI.get_tire_brands-662"><span class="linenos">662</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_tire_brands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="SmartTyreAPI.get_tire_brands-663"><a href="#SmartTyreAPI.get_tire_brands-663"><span class="linenos">663</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.get_tire_brands-664"><a href="#SmartTyreAPI.get_tire_brands-664"><span class="linenos">664</span></a><span class="sd">        Obtains the list of tire brands from the Smart Tyre API.</span>
+</span><span id="SmartTyreAPI.get_tire_brands-665"><a href="#SmartTyreAPI.get_tire_brands-665"><span class="linenos">665</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI.get_tire_brands-666"><a href="#SmartTyreAPI.get_tire_brands-666"><span class="linenos">666</span></a><span class="sd">            The list of tire brands if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI.get_tire_brands-667"><a href="#SmartTyreAPI.get_tire_brands-667"><span class="linenos">667</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.get_tire_brands-668"><a href="#SmartTyreAPI.get_tire_brands-668"><span class="linenos">668</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/brand/all&quot;</span>
+</span><span id="SmartTyreAPI.get_tire_brands-669"><a href="#SmartTyreAPI.get_tire_brands-669"><span class="linenos">669</span></a>
+</span><span id="SmartTyreAPI.get_tire_brands-670"><a href="#SmartTyreAPI.get_tire_brands-670"><span class="linenos">670</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
 </span></pre></div>
 
 
@@ -2837,15 +3093,15 @@ Check the API documentation for optional fields.</p>
 
     </div>
     <a class="headerlink" href="#SmartTyreAPI.get_tire_sizes"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.get_tire_sizes-611"><a href="#SmartTyreAPI.get_tire_sizes-611"><span class="linenos">611</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_tire_sizes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="SmartTyreAPI.get_tire_sizes-612"><a href="#SmartTyreAPI.get_tire_sizes-612"><span class="linenos">612</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI.get_tire_sizes-613"><a href="#SmartTyreAPI.get_tire_sizes-613"><span class="linenos">613</span></a><span class="sd">        Obtains the list of tire sizes from the Smart Tyre API.</span>
-</span><span id="SmartTyreAPI.get_tire_sizes-614"><a href="#SmartTyreAPI.get_tire_sizes-614"><span class="linenos">614</span></a><span class="sd">        Returns:</span>
-</span><span id="SmartTyreAPI.get_tire_sizes-615"><a href="#SmartTyreAPI.get_tire_sizes-615"><span class="linenos">615</span></a><span class="sd">            The list of tire sizes if available or None if the request fails.</span>
-</span><span id="SmartTyreAPI.get_tire_sizes-616"><a href="#SmartTyreAPI.get_tire_sizes-616"><span class="linenos">616</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI.get_tire_sizes-617"><a href="#SmartTyreAPI.get_tire_sizes-617"><span class="linenos">617</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/size/all&quot;</span>
-</span><span id="SmartTyreAPI.get_tire_sizes-618"><a href="#SmartTyreAPI.get_tire_sizes-618"><span class="linenos">618</span></a>
-</span><span id="SmartTyreAPI.get_tire_sizes-619"><a href="#SmartTyreAPI.get_tire_sizes-619"><span class="linenos">619</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.get_tire_sizes-672"><a href="#SmartTyreAPI.get_tire_sizes-672"><span class="linenos">672</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_tire_sizes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="SmartTyreAPI.get_tire_sizes-673"><a href="#SmartTyreAPI.get_tire_sizes-673"><span class="linenos">673</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.get_tire_sizes-674"><a href="#SmartTyreAPI.get_tire_sizes-674"><span class="linenos">674</span></a><span class="sd">        Obtains the list of tire sizes from the Smart Tyre API.</span>
+</span><span id="SmartTyreAPI.get_tire_sizes-675"><a href="#SmartTyreAPI.get_tire_sizes-675"><span class="linenos">675</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI.get_tire_sizes-676"><a href="#SmartTyreAPI.get_tire_sizes-676"><span class="linenos">676</span></a><span class="sd">            The list of tire sizes if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI.get_tire_sizes-677"><a href="#SmartTyreAPI.get_tire_sizes-677"><span class="linenos">677</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.get_tire_sizes-678"><a href="#SmartTyreAPI.get_tire_sizes-678"><span class="linenos">678</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/tyre/size/all&quot;</span>
+</span><span id="SmartTyreAPI.get_tire_sizes-679"><a href="#SmartTyreAPI.get_tire_sizes-679"><span class="linenos">679</span></a>
+</span><span id="SmartTyreAPI.get_tire_sizes-680"><a href="#SmartTyreAPI.get_tire_sizes-680"><span class="linenos">680</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
 </span></pre></div>
 
 
@@ -2871,15 +3127,15 @@ Check the API documentation for optional fields.</p>
 
     </div>
     <a class="headerlink" href="#SmartTyreAPI.get_vehicle_models"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.get_vehicle_models-621"><a href="#SmartTyreAPI.get_vehicle_models-621"><span class="linenos">621</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_vehicle_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="SmartTyreAPI.get_vehicle_models-622"><a href="#SmartTyreAPI.get_vehicle_models-622"><span class="linenos">622</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI.get_vehicle_models-623"><a href="#SmartTyreAPI.get_vehicle_models-623"><span class="linenos">623</span></a><span class="sd">        Obtains the list of vehicle models from the Smart Tyre API.</span>
-</span><span id="SmartTyreAPI.get_vehicle_models-624"><a href="#SmartTyreAPI.get_vehicle_models-624"><span class="linenos">624</span></a><span class="sd">        Returns:</span>
-</span><span id="SmartTyreAPI.get_vehicle_models-625"><a href="#SmartTyreAPI.get_vehicle_models-625"><span class="linenos">625</span></a><span class="sd">            The list of vehicle models if available or None if the request fails.</span>
-</span><span id="SmartTyreAPI.get_vehicle_models-626"><a href="#SmartTyreAPI.get_vehicle_models-626"><span class="linenos">626</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI.get_vehicle_models-627"><a href="#SmartTyreAPI.get_vehicle_models-627"><span class="linenos">627</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/model/all&quot;</span>
-</span><span id="SmartTyreAPI.get_vehicle_models-628"><a href="#SmartTyreAPI.get_vehicle_models-628"><span class="linenos">628</span></a>
-</span><span id="SmartTyreAPI.get_vehicle_models-629"><a href="#SmartTyreAPI.get_vehicle_models-629"><span class="linenos">629</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.get_vehicle_models-682"><a href="#SmartTyreAPI.get_vehicle_models-682"><span class="linenos">682</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_vehicle_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="SmartTyreAPI.get_vehicle_models-683"><a href="#SmartTyreAPI.get_vehicle_models-683"><span class="linenos">683</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.get_vehicle_models-684"><a href="#SmartTyreAPI.get_vehicle_models-684"><span class="linenos">684</span></a><span class="sd">        Obtains the list of vehicle models from the Smart Tyre API.</span>
+</span><span id="SmartTyreAPI.get_vehicle_models-685"><a href="#SmartTyreAPI.get_vehicle_models-685"><span class="linenos">685</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI.get_vehicle_models-686"><a href="#SmartTyreAPI.get_vehicle_models-686"><span class="linenos">686</span></a><span class="sd">            The list of vehicle models if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI.get_vehicle_models-687"><a href="#SmartTyreAPI.get_vehicle_models-687"><span class="linenos">687</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.get_vehicle_models-688"><a href="#SmartTyreAPI.get_vehicle_models-688"><span class="linenos">688</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/model/all&quot;</span>
+</span><span id="SmartTyreAPI.get_vehicle_models-689"><a href="#SmartTyreAPI.get_vehicle_models-689"><span class="linenos">689</span></a>
+</span><span id="SmartTyreAPI.get_vehicle_models-690"><a href="#SmartTyreAPI.get_vehicle_models-690"><span class="linenos">690</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
 </span></pre></div>
 
 
@@ -2905,15 +3161,15 @@ Check the API documentation for optional fields.</p>
 
     </div>
     <a class="headerlink" href="#SmartTyreAPI.get_axle_types"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.get_axle_types-631"><a href="#SmartTyreAPI.get_axle_types-631"><span class="linenos">631</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_axle_types</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="SmartTyreAPI.get_axle_types-632"><a href="#SmartTyreAPI.get_axle_types-632"><span class="linenos">632</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI.get_axle_types-633"><a href="#SmartTyreAPI.get_axle_types-633"><span class="linenos">633</span></a><span class="sd">        Obtains the list of axle types from the Smart Tyre API.</span>
-</span><span id="SmartTyreAPI.get_axle_types-634"><a href="#SmartTyreAPI.get_axle_types-634"><span class="linenos">634</span></a><span class="sd">        Returns:</span>
-</span><span id="SmartTyreAPI.get_axle_types-635"><a href="#SmartTyreAPI.get_axle_types-635"><span class="linenos">635</span></a><span class="sd">            The list of axle types if available or None if the request fails.</span>
-</span><span id="SmartTyreAPI.get_axle_types-636"><a href="#SmartTyreAPI.get_axle_types-636"><span class="linenos">636</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="SmartTyreAPI.get_axle_types-637"><a href="#SmartTyreAPI.get_axle_types-637"><span class="linenos">637</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/axle/all&quot;</span>
-</span><span id="SmartTyreAPI.get_axle_types-638"><a href="#SmartTyreAPI.get_axle_types-638"><span class="linenos">638</span></a>
-</span><span id="SmartTyreAPI.get_axle_types-639"><a href="#SmartTyreAPI.get_axle_types-639"><span class="linenos">639</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SmartTyreAPI.get_axle_types-692"><a href="#SmartTyreAPI.get_axle_types-692"><span class="linenos">692</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_axle_types</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="SmartTyreAPI.get_axle_types-693"><a href="#SmartTyreAPI.get_axle_types-693"><span class="linenos">693</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.get_axle_types-694"><a href="#SmartTyreAPI.get_axle_types-694"><span class="linenos">694</span></a><span class="sd">        Obtains the list of axle types from the Smart Tyre API.</span>
+</span><span id="SmartTyreAPI.get_axle_types-695"><a href="#SmartTyreAPI.get_axle_types-695"><span class="linenos">695</span></a><span class="sd">        Returns:</span>
+</span><span id="SmartTyreAPI.get_axle_types-696"><a href="#SmartTyreAPI.get_axle_types-696"><span class="linenos">696</span></a><span class="sd">            The list of axle types if available or None if the request fails.</span>
+</span><span id="SmartTyreAPI.get_axle_types-697"><a href="#SmartTyreAPI.get_axle_types-697"><span class="linenos">697</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SmartTyreAPI.get_axle_types-698"><a href="#SmartTyreAPI.get_axle_types-698"><span class="linenos">698</span></a>        <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;/smartyre/openapi/vehicle/axle/all&quot;</span>
+</span><span id="SmartTyreAPI.get_axle_types-699"><a href="#SmartTyreAPI.get_axle_types-699"><span class="linenos">699</span></a>
+</span><span id="SmartTyreAPI.get_axle_types-700"><a href="#SmartTyreAPI.get_axle_types-700"><span class="linenos">700</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_get_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{})</span>
 </span></pre></div>
 
 
