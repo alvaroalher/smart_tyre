@@ -597,6 +597,67 @@ class SmartTyreAPI:
         }
         return self._new_get_request(endpoint, params=params)
 
+    def bind_sensor_to_tire(self, tire_code, vehicle_id, axle_index, wheel_index, sensor_code):
+        """
+        Binds a sensor to a tire in the Smart Tyre system.
+        Args:
+            tire_code (str): The ID of the tire.
+            vehicle_id (str): The ID of the vehicle.
+            axle_index (int): The index of the axle.
+            wheel_index (int): The index of the wheel.
+            sensor_code (str): The ID of the sensor.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tyre/sensor/bind"
+
+        body = {
+            "tyreCode": tire_code,
+            "vehicleId": vehicle_id,
+            "axleIndex": axle_index,
+            "wheelIndex": wheel_index,
+            "sensorCode": sensor_code,
+        }
+
+        body_str = json.dumps(body, separators=(",", ":"), ensure_ascii=False)
+
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+            returns_data=False,
+        )
+
+    def unbind_sensor_from_tire(self, tire_code, vehicle_id, axle_index, wheel_index, sensor_code):
+        """
+        Unbinds a sensor from a tire in the Smart Tyre system.
+        Args:
+            tire_code (str): The ID of the tire.
+            vehicle_id (str): The ID of the vehicle.
+            axle_index (int): The index of the axle.
+            wheel_index (int): The index of the wheel.
+            sensor_code (str): The ID of the sensor.
+        Returns:
+            The response from the API if available or None if the request fails.
+        """
+        endpoint = "/smartyre/openapi/tyre/sensor/unbind"
+
+        body = {
+            "tyreCode": tire_code,
+            "vehicleId": vehicle_id,
+            "axleIndex": axle_index,
+            "wheelIndex": wheel_index,
+            "sensorCode": sensor_code,
+        }
+
+        body_str = json.dumps(body, separators=(",", ":"), ensure_ascii=False)
+
+        return self._new_post_request(
+            endpoint=endpoint,
+            body=body_str,
+            returns_data=False,
+        )
+
+    # Reference Data Management
     def get_tire_brands(self):
         """
         Obtains the list of tire brands from the Smart Tyre API.
