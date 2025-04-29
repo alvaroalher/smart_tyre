@@ -8,6 +8,7 @@ Smart Tyre is a Python-based project designed to monitor and analyze tyre perfor
 - Predictive maintenance alerts.
 - Data visualization for performance analysis.
 - Integration with IoT devices for enhanced functionality.
+- Extensive endpoints examples.
 
 ## To-Do List
 
