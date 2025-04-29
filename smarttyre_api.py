@@ -438,7 +438,8 @@ class SmartTyreAPI:
             tbox_info (dict): The information of the TBox to be added.
 
                 The dictionary should contain:
-                - tboxCode (str): The identification code of the TBox. Must be 12 characters from 0-9 and A-F.
+                - tboxCode (str): The identification code of the TBox.
+                    Must be 12 characters from 0-9 and A-F.
                 - version (str): The version of the TBox. Optional
                 - orgId (str): The ID of the organization. Optional
                 - ioTCardNumber (str): The IoT card number of the TBox. Optional
@@ -468,7 +469,8 @@ class SmartTyreAPI:
 
                 The dictionary should contain:
                 - id (str): The ID of the TBox to be updated.
-                - tboxCode (str): The identification code of the Tbox to be updated. Cannot be changed.
+                - tboxCode (str): The identification code of the Tbox to be updated.
+                    Cannot be changed.
                 - version (str): The version of the TBox. Optional
                 - orgId (str): The ID of the organization. Optional
                 - ioTCardNumber (str): The IoT card number of the TBox. Optional
@@ -525,7 +527,8 @@ class SmartTyreAPI:
             sensor_info (dict): The information of the sensor to be added.
 
                 The dictionary should contain:
-                - sensorCode (str): The identification code of the sensor. Must be 12 characters from 0-9 and A-F.
+                - sensorCode (str): The identification code of the sensor.
+                    Must be 12 characters from 0-9 and A-F.
                 - version (str): The version of the sensor. Optional
                 - orgId (str): The ID of the organization. Optional
                 - remark (str): Additional remarks about the sensor. Optional
@@ -553,7 +556,8 @@ class SmartTyreAPI:
 
                 The dictionary should contain:
                 - id (str): The ID of the sensor to be updated.
-                - sensorCode (str): The identification code of the sensor. Must be 12 characters from 0-9 and A-F.
+                - sensorCode (str): The identification code of the sensor.
+                    Must be 12 characters from 0-9 and A-F.
                 - version (str): The version of the sensor. Optional
                 - orgId (str): The ID of the organization. Optional
                 - remark (str): Additional remarks about the sensor. Optional
