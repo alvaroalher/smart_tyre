@@ -13,6 +13,10 @@ Smart Tyre is a Python-based project designed to monitor and analyze tyre perfor
 
 - Complete unit test for all API endpoints.
 
+## Documentation
+
+The documentation to use the API endpoints can be found at: https://alvaroalher.github.io/smart_tyre/smarttyre_api.html
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
