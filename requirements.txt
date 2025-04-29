@@ -4,8 +4,12 @@ dotenv==0.9.9
 exceptiongroup==1.2.2
 idna==3.10
 iniconfig==2.1.0
+Jinja2==3.1.6
+MarkupSafe==3.0.2
 packaging==24.2
+pdoc==15.0.1
 pluggy==1.5.0
+Pygments==2.19.1
 pytest==8.3.5
 python-dotenv==1.1.0
 requests==2.32.3
