@@ -218,7 +218,7 @@ class SmartTyreAPI:
         Obtains the list of vehicles from the Smart Tyre API.
         Args:
             params (dict): Optional parameters for filtering the vehicle list.
-                Example: {"page": "1", "size": "10"}
+                Example: {"page": "1", "pageSize": "10"}
         Note: The params dictionary must follow the API requirements.
         Returns:
             The list of vehicles if available or None if the request fails.
@@ -364,7 +364,7 @@ class SmartTyreAPI:
         Obtains the list of tires from the Smart Tyre API.
         Args:
             params (dict): Optional parameters for filtering the tire list.
-                Example: {"page": "1", "size": "10"}
+                Example: {"page": "1", "pageSize": "10"}
         Note: The params dictionary must follow the API requirements.
         Returns:
             The list of tires if available or None if the request fails.
@@ -507,7 +507,7 @@ class SmartTyreAPI:
 
         Args:
             params (dict): Optional parameters for filtering the TBox list.
-                Example: {"page": "1", "size": "10"}
+                Example: {"page": "1", "pageSize": "10"}
         Note: The params dictionary must follow the API requirements.
         Returns:
             The list of TBoxes if available or None if the request fails.
@@ -594,7 +594,7 @@ class SmartTyreAPI:
         Obtains the list of sensors from the Smart Tyre API.
         Args:
             params (dict): Optional parameters for filtering the sensor list.
-                Example: {"page": "1", "size": "10"}
+                Example: {"page": "1", "pageSize": "10"}
         Note: The params dictionary must follow the API requirements.
         Returns:
             The list of sensors if available or None if the request fails.
