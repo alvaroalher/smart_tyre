@@ -2,7 +2,7 @@
 This module provides a client for interacting with the SmartTyre API."""
 
 import os
-
+import json
 from dotenv import load_dotenv
 
 from smarttyre_api import SmartTyreAPI
@@ -13,6 +13,13 @@ CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 SIGN_KEY = os.getenv("SIGN_KEY")
 
+def save_response_to_file(response, filename):
+    """Save the API response to a file."""
+    with open(filename, "w") as file:
+        if isinstance(response, dict):
+            file.write(json.dumps(response, indent=4, ensure_ascii=False))
+        else:
+            file.write(str(response))
 
 def menu():
     """Display the menu options."""
@@ -59,44 +66,56 @@ if __name__ == "__main__":
     if choice == "1":  # Get access token
         access_token = tire_api.get_access_token()
         print("Access Token:", access_token)
+        response = access_token
     elif choice == "2":  # Get vehicle list
         vehicle_list = tire_api.get_vehicle_list()
         print("Vehicle List:", vehicle_list)
+        response = vehicle_list
     elif choice == "3":  # Get vehicle info
         vehicle_id = input("Enter Vehicle ID: ")
         vehicle_info = tire_api.get_vehicle_info(vehicle_id=vehicle_id)
         print("Vehicle Info:", vehicle_info)
+        response = vehicle_info
     elif choice == "4":  # Get tire list
         tire_list = tire_api.get_tire_list()
         print("Tire List:", tire_list)
+        response = tire_list
     elif choice == "5":  # Get tires info by vehicle
         vehicle_id = input("Enter Vehicle ID: ")
         tires_info = tire_api.get_tires_info_by_vehicle(vehicle_id=vehicle_id)
         print("Tires Info by Vehicle:", tires_info)
+        response = tires_info
     elif choice == "6":  # Get tire info
         tire_id = input("Enter Tire ID: ")
         tire_info = tire_api.get_tire_info(tire_id=tire_id)
         print("Tire Info:", tire_info)
+        response = tire_info
     elif choice == "7":  # Get sensor info
         sensor_id = input("Enter Sensor ID: ")
         sensor_info = tire_api.get_sensor_info(sensor_id=sensor_id)
         print("Sensor Info:", sensor_info)
+        response = sensor_info
     elif choice == "8":  # Get tbox info
         tbox_id = input("Enter Tbox ID: ")
         tbox_info = tire_api.get_tbox_info(tbox_id=tbox_id)
         print("Tbox Info:", tbox_info)
+        response = tbox_info
     elif choice == "9":  # Get tire brands
         tire_brands = tire_api.get_tire_brands()
         print("Tire Brands:", tire_brands)
+        response = tire_brands
     elif choice == "10":  # Get tire sizes
         tire_sizes = tire_api.get_tire_sizes()
         print("Tire Sizes:", tire_sizes)
+        response = tire_sizes
     elif choice == "11":  # Get vehicle models
         vehicle_models = tire_api.get_vehicle_models()
         print("Vehicle Models:", vehicle_models)
+        response = vehicle_models
     elif choice == "12":  # Get axle types
         axle_types = tire_api.get_axle_types()
         print("Axle Types:", axle_types)
+        response = axle_types
     elif choice == "13":  # Add vehicle
         new_vehicle = {
             "isTractor": 0,
@@ -177,9 +196,11 @@ if __name__ == "__main__":
     elif choice == "21":  # Get Tbox List
         tbox_list = tire_api.get_tboxes_list()
         print("Tbox List:", tbox_list)
+        response = tbox_list
     elif choice == "22":  # Get Sensor List
         sensor_list = tire_api.get_sensor_list()
         print("Sensor List:", sensor_list)
+        response = sensor_list
     elif choice == "23":  # Bind tire to vehicle
         vehicle_id = input("Enter Vehicle ID: ")
         tire_id = input("Enter Tire ID: ")
@@ -216,3 +237,6 @@ if __name__ == "__main__":
         print("Unbind Sensor Response:", response)
     else:
         print("Exiting...")
+
+    # Save the response to a file
+    save_response_to_file(response, "api_response.json")
